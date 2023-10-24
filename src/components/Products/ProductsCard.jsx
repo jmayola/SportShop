@@ -1,6 +1,5 @@
 import {
 } from "react-router-dom";
-import data from "../../database/db"
 import { useState } from "react";
 function ProductsCard(children) {
   const [Data, setData] = useState(data)

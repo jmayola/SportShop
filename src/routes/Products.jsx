@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import data from "../database/db";
 import ProductsCard from "../components/Products/ProductsCard";
 function Products() {
   const [Data, setData] = useState(data);
