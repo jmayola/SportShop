@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 function Header() {
   return (
     <header className="">
-        <nav className="flex flex-row place-items-center justify-between bg-yellow-100">
+        <nav className="flex flex-row place-items-center justify-between bg-[#88CC55]">
             <h1 className="flex text-2xl p-5">SportShop</h1>
             <div className="flex flex-row h-full text-xl list-none">
                 <Link to={`/contacts`}><li className="p-5 h-16 text-white text-base cursor-pointer hover:bg-black">Tienda</li></Link>
