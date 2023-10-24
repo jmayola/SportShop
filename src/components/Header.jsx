@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom"
 function Header() {
   return (
-    <header>
-        <nav className="flex flex-row align-middle justify-around bg-yellow-100">
-            <h1 className="p-3 flex align-middle text-2xl">SportShop</h1>
-            <div className="flex flex-row align-middle justify-center list-none">
-                <li className="p-3 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Tienda</li>
-                <li className="p-3 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Galeria</li>
-                <li className="p-3 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Acerca de Nosotros</li>
-                <li className="p-3 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Github</li>
+    <header className="">
+        <nav className="flex flex-row place-items-center justify-between bg-yellow-100">
+            <h1 className="flex text-2xl p-5">SportShop</h1>
+            <div className="flex flex-row h-full text-xl list-none">
+                <Link to={`contacts/`}><li className="p-10 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Tienda</li></Link>
+                <li className="p-10 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Galeria</li>
+                <li className="p-10 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Acerca de Nosotros</li>
+                <li className="p-10 bg-yellow-200 cursor-pointer hover:bg-yellow-300">Github</li>
             </div>
         </nav>
     </header>
