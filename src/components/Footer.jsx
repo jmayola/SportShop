@@ -1,16 +1,25 @@
+import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <footer className="flex align-middle justify-around">
+    <footer className="flex place-items-end justify-around bg-slate-400 text-center h-full">
+      <div>
+        <h2>All Rights Reserved</h2>
+      </div>
+      <div>
+        <h2>SportShop</h2>
+        <h3>El deporte de alto rendimiento al alcance.</h3>
+      </div>
+      <div>
+        <h4>contactos:</h4>
         <div>
-            <h4>contactos:</h4>
-            <div>
-                <h5>instagram</h5>
-                <h5>linkein</h5>
-                <h5>github</h5>
-            </div>
+          <h5><Link to={`https://www.instagram.com`}>instagram</Link></h5>
+          <h5>Linkein</h5>
+          <h5>github</h5>
         </div>
+        <h4></h4>
+      </div>
     </footer>
-    )
+  );
 }
 
-export default Footer
+export default Footer;
