@@ -14,14 +14,8 @@ function App() {
       // colocamos la direccion en base a la ruta del main
       path: "/",
       // y el elemento que se va a cargar en el main :)
-      element: <>
-      <Aboutus></Aboutus>
-      </>,
-      errorElement: <ErrorPage></ErrorPage>
-    },
-    {
-      path: "/contacts",
-      element: <div>Hola mundo!</div>,
+      element:
+        <Aboutus></Aboutus>,
       errorElement: <ErrorPage></ErrorPage>
     },
     {
@@ -29,16 +23,17 @@ function App() {
       element: <Products></Products>,
       errorElement: <ErrorPage></ErrorPage>
     },
-     {
-      element: <Products/>,
+    {
       path: "teams",
+      element: <Products />,
       loader: async () => {
-        return json({message: "hola mundo"});
+        return json({ message: "hola mundo" });
       },
+
     },
   ]);
   return (
-        <RouterProvider router={router} /> 
+    <RouterProvider router={router} />
   );
 }
 
