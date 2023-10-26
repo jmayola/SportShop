@@ -1,5 +1,5 @@
 import "./index.css";
-import Aboutus from "./routes/Aboutus";
+import Home from "./routes/Home";
 import Products from "./routes/Products";
 import ErrorPage from "./routes/error-page";
 import {
@@ -15,7 +15,8 @@ function App() {
       path: "/",
       // y el elemento que se va a cargar en el main :)
       element:
-        <Aboutus></Aboutus>,
+
+        < Home ></Home >,
       errorElement: <ErrorPage></ErrorPage>
     },
     {
