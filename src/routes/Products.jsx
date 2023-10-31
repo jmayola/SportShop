@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import ProductsCard from "../components/Products/ProductsCard";
 function Products() {
   const [Data, setData] = useState(data);
-
   return (
     <>
       <Header></Header>

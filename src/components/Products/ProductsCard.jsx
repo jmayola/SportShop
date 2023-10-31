@@ -6,6 +6,7 @@ function ProductsCard(children) {
   let id = children.values
   return (
     <>
+    <button onClick={query}>consulta</button>
       <div className="bg-slate-500 w-max">
         <h3>{data[id].nombre}</h3>
         <h3>{data[id].precio}</h3>
