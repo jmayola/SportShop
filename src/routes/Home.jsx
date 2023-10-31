@@ -1,17 +1,18 @@
 import Footer from "../components/Footer"
 import Header from "../components/Header"
-import Carrousel from "../components/Products/Carrousel"
-function Aboutus() {
+import MainContent from "../components/MainContent"
+
+function Home() {
   // backend va aca
 
   return (
     <>
       <Header />
-      <Carrousel></Carrousel>
+      <MainContent></MainContent>
       <Footer />
     </>
 
   )
 }
 
-export default Aboutus
+export default Home
