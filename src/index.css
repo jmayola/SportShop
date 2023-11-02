@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
+  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,200&display=swap');
 
 
 @layer utilities {
@@ -15,10 +13,20 @@
     .link-typography {
         color: #000;
         font-family: inter;
-        font-size: 20px;
+        font-size: 15px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         letter-spacing: 1px;
     }
+    .altura{
+        height: 650px;
+    }
+    .Josefin{
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    .font-inter{
+        font-family: 'Inter', sans-serif;
+    }
+
 }
