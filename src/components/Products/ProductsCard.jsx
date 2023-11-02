@@ -1,16 +1,15 @@
-import {
-} from "react-router-dom";
-import { useState } from "react";
+import React from "react"
 function ProductsCard(children) {
-  const [Data, setData] = useState(data)
-  let id = children.values
+  let prop = children.value
+  let Data = prop.Data
+  let index = prop.i
+  
   return (
     <>
-    <button onClick={query}>consulta</button>
       <div className="bg-slate-500 w-max">
-        <h3>{data[id].nombre}</h3>
-        <h3>{data[id].precio}</h3>
-        <h3>{data[id].marca}</h3>
+        <p>{Data[index].product_name}</p>
+        <p>{Data[index].price}</p>
+        <p>{Data[index].mark}</p>
       </div>
     </>
   )
