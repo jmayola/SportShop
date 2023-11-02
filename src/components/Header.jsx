@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 function Header() {
     return (
-        <header className=" flex fixed top-0 left-0 w-full px-10 py-2 bg-[#9ea5e6] justify-between align-middle z-50 ">
+        <header className=" flex  top-0 left-0 w-full px-10 py-2 bg-[#9ea5e6] justify-between align-middle z-50 ">
             <img className="flex w-auto h-24 p-5 px-14" src="../public/logo-empresa.png" alt="imagen " />
 
             <nav className="flex flex-row font-sans place-items-center justify-between ">
