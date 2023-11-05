@@ -3,7 +3,7 @@ function ProductsCard(children) {
   let prop = children.value
   let Data = prop.Data
   let index = prop.i
-  
+
   return (
     <>
       <div className="bg-slate-500 w-max">
