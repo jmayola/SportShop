@@ -1,11 +1,11 @@
 import Presentation from "./Products/Presentation";
-import SectionPRoducts from "./Products/SectionProducts";
+import ProductsCard from "./Products/ProductsCard";
 
 function MainContent() {
     return (
         <>
             <Presentation></Presentation>
-            <SectionPRoducts></SectionPRoducts>
+            <ProductsCard></ProductsCard>
         </>
 
     )
