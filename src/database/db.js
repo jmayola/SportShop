@@ -37,19 +37,4 @@ function SELECT() {
 // db.run(sql)
 SELECT()
 app.use(cors())
-// app.get("/", (req,res)=>{
-//   res.json({"message": "hola"})
-// })
 app.listen(3000)
-// var requestTime = function (req, res, next) {
-//   req.requestTime = Date.now()
-//   next();
-// };
-
-// app.use(requestTime);
-
-// app.get('/date', function (req, res) {
-//   var responseText = 'Requested at: ' + req.requestTime + '';
-//   res.send(responseText);
-// });
-
