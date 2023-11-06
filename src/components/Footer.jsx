@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <footer className="flex place-items-end justify-around bg-[#ffaf5f] text-center h-full">
+    <footer className="flex place-items-end justify-around bg-orange-500 text-center h-full">
       <div>
         <h2>All Rights Reserved</h2>
       </div>

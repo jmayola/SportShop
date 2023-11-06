@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Header />
-      <MainContent></MainContent>
+      <MainContent />
       <Footer />
     </>
 
