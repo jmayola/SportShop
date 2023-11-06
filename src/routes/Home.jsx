@@ -4,6 +4,7 @@ import MainContent from "../components/MainContent"
 
 function Home() {
   // backend va aca
+
   return (
     <>
       <Header />
