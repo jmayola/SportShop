@@ -42,6 +42,13 @@ function SELECT() {
     console.log("datos cargados en el puerto 3000")
   })
 }
+function DELETE(id) {
+  sql = `DELETE FROM products WHERE id=?`;
+  db.run(sql, [id], (err) => {
+    if (err) return console.error(err.message);
+    else console.log("Eliminacion Exitosa");
+  });
+}
 function CREATE_TABLE(){
   sql = "CREATE TABLE `products` (`id_products` INTEGER PRIMARY KEY NOT NULL, `name_products` VARCHAR(25) NOT NULL , `desc_products` VARCHAR(100) NOT NULL, `price_products` INTEGER NOT NULL ,`stock_products` INT(10) NOT NULL , `category_products` VARCHAR(100) NOT NULL , `image_products` VARCHAR NOT NULL)"
   db.run(sql, (err)=>{
@@ -64,6 +71,10 @@ app.put("/products", (req,res)=>{
   let prop = req.body
   PUT(prop.name_products, prop.desc_products, prop.price_products, prop.stock_products,prop.category_products, prop.image_products, prop.id_products)
   console.log("PUT realizado")
+})
+app.delete("/products", (req,res)=>{
+  DELETE(req.body.id_products)
+  console.log("DELETE realizado")
 })
 console.log("base de datos conectada.")
 app.listen(3000)
