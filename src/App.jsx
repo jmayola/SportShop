@@ -1,21 +1,14 @@
 import "./index.css";
 import Home from "./routes/Home";
+import Inserts from "./routes/Inserts";
 import Products from "./routes/Products";
+import Update from "./routes/Update";
 import ErrorPage from "./routes/error-page";
-import { useState, useEffect } from "react";
-import { createBrowserRouter, json, RouterProvider } from "react-router-dom";
+import {insertProductAction} from "./components/Products/InsertProduct";
+import {updateProductAction} from "./components/Products/UpdateProduct";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
   // creamos enturador
-  const [data, setdata] = useState();
-
-  //   useEffect(() => {
-  // fetch("http://localhost:3000").then(res=>{
-  //     console.log(res)
-  //     setdata(res.json)
-  // }).catch(err=>console.log(err))
-
-  //   }, [])
-  //   console.log(data)
   const router = createBrowserRouter([
     {
       // colocamos la direccion en base a la ruta del main
@@ -31,6 +24,19 @@ function App() {
       element: <Products></Products>,
       errorElement: <ErrorPage></ErrorPage>,
     },
+    {
+      path: "/products/insert",
+      element: <Inserts></Inserts>,
+      action: insertProductAction ,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/products/update/:id",
+      element: <Update></Update>,
+      action: updateProductAction ,
+      errorElement: <ErrorPage></ErrorPage>,
+    }
+
   ]);
   return <RouterProvider router={router} />;
 }
