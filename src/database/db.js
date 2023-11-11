@@ -29,16 +29,17 @@ function PUT(name,desc,price,stock,cat,img,id){
 }
 function SELECT() {
   sql = `SELECT * FROM products`;
-  db.all(sql,[], (err,rows)=>{
-    if(err) console.error(err.message);
+  db.all(sql, [], (err, rows) => {
+    if (err) console.error(err.message);
     let arr = []
-    rows.forEach(row=>{
-     arr.push(row) //añadimos a un array
+    rows.forEach(row => {
+      arr.push(row) //añadimos a un array
     })
     console.log(rows)
     app.get("/", (req,res)=>{
       res.json(arr) // mostramos el array de objetos para visualizarlo
-    })        
+    })
+    console.log("datos cargados en el puerto 3000")
   })
 }
 function CREATE_TABLE(){
