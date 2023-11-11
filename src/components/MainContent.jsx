@@ -1,5 +1,6 @@
 import Presentation from "./Products/Presentation";
 import ProductsCard from "./Products/ProductsCard";
+import AboutUs from "./Products/AboutUs";
 import { useState, useEffect } from "react";
 import axios from "axios";
 function MainContent() {
@@ -31,6 +32,8 @@ function MainContent() {
             }
           </section>
         </section>
+
+        <AboutUs></AboutUs>
       </>
     )
   }
