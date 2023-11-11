@@ -1,4 +1,4 @@
-import Presentation from "./Products/Presentation";
+import Presentation from "./Presentation";
 import ProductsCard from "./Products/ProductsCard";
 import { useState, useEffect } from "react";
 import axios from "axios";

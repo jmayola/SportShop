@@ -3,6 +3,7 @@ import Home from "./routes/Home";
 import Inserts from "./routes/Inserts";
 import Products from "./routes/Products";
 import Update from "./routes/Update";
+import Delete from "./routes/Delete";
 import ErrorPage from "./routes/error-page";
 import {insertProductAction} from "./components/Products/InsertProduct";
 import {updateProductAction} from "./components/Products/UpdateProduct";
@@ -34,6 +35,11 @@ function App() {
       path: "/products/update/:id",
       element: <Update></Update>,
       action: updateProductAction ,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/products/delete/",
+      element: <Delete></Delete>,
       errorElement: <ErrorPage></ErrorPage>,
     }
 
