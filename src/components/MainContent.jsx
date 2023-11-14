@@ -1,4 +1,4 @@
-import Presentation from "./Products/Presentation";
+import Presentation from "./Presentation";
 import ProductsCard from "./Products/ProductsCard";
 import AboutUs from "./Products/AboutUs";
 import { useState, useEffect } from "react";
