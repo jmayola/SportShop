@@ -1,4 +1,3 @@
-import { Input } from "postcss";
 import Header from "../components/Header";
 import Footer from "./Footer";
 function Registrar() {
@@ -15,30 +14,41 @@ function Registrar() {
               <input
                 name="usuario"
                 type="text"
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                placeholder="Usuario"
+                className="block w-full rounded-lg border border-gray-300 px-3 py-2 my-1 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                placeholder="Nombre Completo"
               />
+
+              <input
+                name="email"
+                type="email"
+                autocomplete="email"
+                required=""
+                className="block w-full rounded-lg border border-gray-300 px-3 py-2 my-1 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                placeholder="Email"
+              />
+
               <input
                 type="password"
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2 my-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1 "
+                className="block w-full rounded-lg border border-gray-300 px-3 py-2 my-1 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1 "
                 placeholder="Contraseña"
               />
             </div>
-            <p class="mb-3 mt-2 text-sm text-gray-500">
-              <a
-                href="/forgot-password"
-                class="text-blue-800 hover:text-blue-600"
-              >
-                ¿Olvidaste tu contraseña?
-              </a>
-            </p>
             <button
               type="submit"
               class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
             >
-              Continuar
+              Registrarse
             </button>
           </form>
+          <div class="mt-6 text-center text-sm text-slate-600">
+            ¿Ya tienes una cuenta?
+            <a
+              href="/Ingresar"
+              class="font-medium text-blue-700 hover:text-blue-600"
+            >
+              Ingresar
+            </a>{" "}
+          </div>
         </div>
       </section>
 
