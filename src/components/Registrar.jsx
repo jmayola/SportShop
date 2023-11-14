@@ -1,14 +1,14 @@
 import { Input } from "postcss";
 import Header from "../components/Header";
 import Footer from "./Footer";
-function Ingresar() {
+function Registrar() {
   return (
     <>
       <Header />
       <section className="contenedor ">
         <div className="mx-auto flex flex-col items-start justify-start pb-28 pt-10 sm:max-w-[400px] sm:items-center sm:justify-center sm:pt-20 ">
           <h1 className="mb-2 text-3xl font-semibold sm:mb-5 sm:text-5xl">
-            Ingresar
+            Registrar
           </h1>
           <form className="w-full">
             <div className="flex place-content-center place-items-center flex-col">
@@ -39,15 +39,6 @@ function Ingresar() {
               Continuar
             </button>
           </form>
-          <div class="mt-6 text-center text-sm text-slate-600">
-            ¿No tienes una cuenta?
-            <a
-              href="/Registrar"
-              class="font-medium text-blue-700 hover:text-blue-600"
-            >
-              Registrate
-            </a>{" "}
-          </div>
         </div>
       </section>
 
@@ -56,4 +47,4 @@ function Ingresar() {
   );
 }
 
-export default Ingresar;
+export default Registrar;

@@ -1,6 +1,6 @@
 import Presentation from "./Presentation";
 import ProductsCard from "./Products/ProductsCard";
-import AboutUs from "./Products/AboutUs";
+import AboutUs from "./AboutUs";
 import { useState, useEffect } from "react";
 import axios from "axios";
 function MainContent() {
