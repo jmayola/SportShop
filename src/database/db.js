@@ -55,8 +55,11 @@ function CREATE_TABLE(){
     if(err) return console.error(err.message)
   })
 }
-// sql = "DROP TABLE products"
-// db.run(sql)
+function DROP_TABLE(){
+  sql = "DROP TABLE products"
+  db.run(sql)
+}
+//DROP_TABLE()
 //CREATE_TABLE()
 SELECT()
 app.use(express.json())
