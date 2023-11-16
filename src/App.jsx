@@ -6,9 +6,12 @@ import Update from "./routes/Update";
 import Delete from "./routes/Delete";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
-import {insertProductAction} from "./components/Products/InsertProduct";
-import {updateProductAction} from "./components/Products/UpdateProduct";
+import Ingresar from "./components/Ingresar";
+import Registrar from "./components/Registrar";
+import { insertProductAction } from "./components/Products/InsertProduct";
+import { updateProductAction } from "./components/Products/UpdateProduct";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./components/Ingresar";
 function App() {
   // creamos enturador
   const router = createBrowserRouter([
@@ -18,8 +21,7 @@ function App() {
       // y el elemento que se va a cargar en el main :)
       element: <Home></Home>,
       errorElement: <ErrorPage></ErrorPage>,
-      children: [{ index: true,
-      element: <Home></Home> }],
+      children: [{ index: true, element: <Home></Home> }],
     },
     {
       path: "/admin/facturas",
@@ -34,21 +36,30 @@ function App() {
     {
       path: "/products/insert",
       element: <Inserts></Inserts>,
-      action: insertProductAction ,
+      action: insertProductAction,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
       path: "/products/update/:id",
       element: <Update></Update>,
-      action: updateProductAction ,
+      action: updateProductAction,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/Ingresar",
+      element: <Ingresar></Ingresar>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/Registrar",
+      element: <Registrar></Registrar>,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
       path: "/products/delete/",
       element: <Delete></Delete>,
       errorElement: <ErrorPage></ErrorPage>,
-    }
-
+    },
   ]);
   return <RouterProvider router={router} />;
 }
