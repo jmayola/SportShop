@@ -3,7 +3,7 @@ import Home from "./routes/Home";
 import Inserts from "./routes/Inserts";
 import Products from "./routes/Products";
 import Update from "./routes/Update";
-import Delete from "./routes/Delete";
+import Delete, {DeleteProductAction} from "./routes/Delete";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
 import Ingresar from "./components/Ingresar";
@@ -59,6 +59,7 @@ function App() {
       path: "/products/delete/",
       element: <Delete></Delete>,
       errorElement: <ErrorPage></ErrorPage>,
+      action: DeleteProductAction
     },
   ]);
   return <RouterProvider router={router} />;

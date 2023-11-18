@@ -2,7 +2,7 @@
   "name": "proyecto-final",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
+  "type":"module",
   "scripts": {
     "dev": "vite && nodemon src/database/db.js",
     "build": "vite build",

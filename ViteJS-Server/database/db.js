@@ -1,12 +1,13 @@
 const express = require("express")
 const cors = require("cors")
-import sqlite3 from "sqlite3";
+const sqlite3 = require("sqlite3")
 const sqlite = sqlite3.verbose();
+const nodemon = require("nodemon")
 let sql;
-const app = express()
 
+const app = express()
 const db = new sqlite.Database(
-  "src/database/products.db",
+  "./database/products.db",
   sqlite.OPEN_READWRITE,
   (err) => {
     if (err) return console.error(err.message);
@@ -43,7 +44,7 @@ function SELECT() {
   })
 }
 function DELETE(id) {
-  sql = `DELETE FROM products WHERE id=?`;
+  sql = `DELETE FROM products WHERE id_products=?`;
   db.run(sql, [id], (err) => {
     if (err) return console.error(err.message);
     else console.log("Eliminacion Exitosa");
@@ -68,16 +69,19 @@ app.post("/products", (req,res)=>{
   let prop = req.body
   INSERT(prop.name_products, prop.desc_products, prop.price_products, prop.stock_products,prop.category_products, prop.image_products)
   console.log("post realizado")
-  console.log(prop)
+  res.sendStatus(200)
 })
 app.put("/products", (req,res)=>{
   let prop = req.body
   PUT(prop.name_products, prop.desc_products, prop.price_products, prop.stock_products,prop.category_products, prop.image_products, prop.id_products)
   console.log("PUT realizado")
+  res.sendStatus(200)
 })
 app.delete("/products", (req,res)=>{
-  DELETE(req.body.id_products)
-  console.log("DELETE realizado")
+  let prop = req.body
+  DELETE(prop.id_products)
+  console.log("Delete Realizado, se ha eliminado la ID: " + prop.id_products)
+  res.sendStatus(200)
 })
 console.log("base de datos conectada.")
 app.listen(3000)
