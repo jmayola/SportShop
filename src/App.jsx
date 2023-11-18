@@ -6,12 +6,11 @@ import Update from "./routes/Update";
 import Delete, {DeleteProductAction} from "./routes/Delete";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
-import Ingresar from "./components/Ingresar";
+import Ingresar, {loginUserAction} from "./components/Ingresar";
 import Registrar from "./components/Registrar";
 import { insertProductAction } from "./components/Products/InsertProduct";
 import { updateProductAction } from "./components/Products/UpdateProduct";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./components/Ingresar";
 function App() {
   // creamos enturador
   const router = createBrowserRouter([
@@ -48,6 +47,7 @@ function App() {
     {
       path: "/Ingresar",
       element: <Ingresar></Ingresar>,
+      action: loginUserAction,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {

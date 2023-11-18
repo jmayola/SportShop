@@ -12,7 +12,13 @@ function Registrar() {
           <form className="w-full">
             <div className="flex place-content-center place-items-center flex-col">
               <input
-                name="usuario"
+                name="user"
+                type="text"
+                className="block w-full rounded-lg border border-gray-300 px-3 py-2 my-1 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                placeholder="Nombre de Usuario"
+              />
+              <input
+                name="fullname"
                 type="text"
                 className="block w-full rounded-lg border border-gray-300 px-3 py-2 my-1 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                 placeholder="Nombre Completo"

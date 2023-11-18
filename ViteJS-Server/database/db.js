@@ -13,7 +13,60 @@ const db = new sqlite.Database(
     if (err) return console.error(err.message);
   }
 );
+const db2 = new sqlite.Database(
+  "./database/products.db",
+  sqlite.OPEN_READWRITE,
+  (err) => {
+    if (err) return console.error(err.message);
+  }
+)
+// db2.run("CREATE TABLE users(username VARCHAR(50) PRIMARY KEY, password VARCHAR(100) NOT NULL, fullname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL)", (err)=>{
+//   console.log("Se ha detectado un Error" + err.message)
+// })
 // sql = `CREATE TABLE products(id INTEGER PRIMARY KEY, product_name, price, mark)`
+
+
+
+//////////////////////////////////////////////////////////
+//                DATABASE USERS                        //
+//////////////////////////////////////////////////////////
+
+
+
+function SELECTUSER() {
+  sql = `SELECT * FROM users`;
+  db.all(sql, [], (err, rows) => {
+    if (err) console.error(err.message);
+    let arr = []
+    rows.forEach(row => {
+      arr.push(row) //añadimos a un array
+    })
+    console.log(rows)
+    app.get("/users", (req,res)=>{
+      res.json(arr) // mostramos el array de objetos para visualizarlo
+    })
+    console.log("datos de usuarios cargados en el puerto 3000")
+  })
+}
+function INSERTUSER(username,password,fullname,email) {
+  sql = `INSERT INTO users(username, password, fullname, email) VALUES(?,?,?,?)`;
+  db2.run(sql, [username,password,fullname,email], (err) => {
+    if (err) return console.error(err.message);
+    else console.log("ingreso database2 exitoso");
+  });
+}
+// INSERTUSER("j8li", 192371,"julianmayola","juli@gmail.com")
+SELECTUSER()
+
+
+
+
+//////////////////////////////////////////////////////////
+//                DATABASE PRODUCTS                     //
+//////////////////////////////////////////////////////////
+
+
+
 function INSERT(name,desc,price,stock,cat,img) {
   sql = `INSERT INTO products(name_products, desc_products, price_products, stock_products, category_products, image_products) VALUES(?,?,?,?,?,?)`;
   db.run(sql, [name,desc,price,stock,cat,img], (err) => {
@@ -36,11 +89,11 @@ function SELECT() {
     rows.forEach(row => {
       arr.push(row) //añadimos a un array
     })
-    console.log(rows)
     app.get("/", (req,res)=>{
       res.json(arr) // mostramos el array de objetos para visualizarlo
     })
     console.log("datos cargados en el puerto 3000")
+    
   })
 }
 function DELETE(id) {

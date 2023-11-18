@@ -1,6 +1,9 @@
+import React from "react";
 import Header from "../components/Header";
 import Footer from "./Footer";
-function Ingresar() {
+import { Form, redirect } from "react-router-dom";
+import axios from "axios";
+export default function Ingresar() {
   return (
     <>
       <Header />
@@ -9,7 +12,7 @@ function Ingresar() {
           <h1 className="mb-2 text-3xl font-semibold sm:mb-5 sm:text-5xl">
             Ingresar
           </h1>
-          <form className="w-full">
+          <Form method="post" action="/Ingresar" className="w-full">
             <div className="flex place-content-center place-items-center flex-col">
               <input
                 name="usuario"
@@ -31,13 +34,8 @@ function Ingresar() {
                 ¿Olvidaste tu contraseña?
               </a>
             </p>
-            <button
-              type="submit"
-              className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
-            >
-              Continuar
-            </button>
-          </form>
+            <button className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">Ingresar</button>
+          </Form>
           <div className="mt-6 text-center text-sm text-slate-600">
             ¿No tienes una cuenta?
             <a
@@ -54,5 +52,12 @@ function Ingresar() {
     </>
   );
 }
-
-export default Ingresar;
+export const loginUserAction = async ({ request }) => {
+  let result;
+  axios.get("http://localhost:3000/users").then((res) => {
+    result = res.data;
+  });
+  console.log(result);
+  const data = await request.formData();
+  axios.post("http://localhost:3000/users",)
+};

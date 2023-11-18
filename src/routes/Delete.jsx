@@ -34,6 +34,6 @@ export const DeleteProductAction = async ({ request }) => {
   axios.delete("http://localhost:3000/products", {
     data: submission
   });
-  return redirect("/");
+  return redirect("/products");
 };
 export default Delete;

@@ -11,14 +11,14 @@ function Products() {
       let data = res.data;
       return setData(data);
     });
-  }, []);
+  }, [Data]);
   if (Data == "") {
     return (
       <>
         <Header></Header>
         <div className="grid place-items-center bg-slate-500 p-10 m-10 rounded-xl">
         <h1 className="text-4xl">No hay Productos</h1>
-        <p className="text-lg p-5">prueba a recargar la pagina</p>
+        <p className="text-lg p-5">Prueba a recargar la pagina</p>
         </div>
         <Footer></Footer>
       </>
