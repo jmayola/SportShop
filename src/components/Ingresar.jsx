@@ -1,4 +1,3 @@
-import { Input } from "postcss";
 import Header from "../components/Header";
 import Footer from "./Footer";
 function Ingresar() {
@@ -24,26 +23,26 @@ function Ingresar() {
                 placeholder="Contraseña"
               />
             </div>
-            <p class="mb-3 mt-2 text-sm text-gray-500">
+            <p className="mb-3 mt-2 text-sm text-gray-500">
               <a
                 href="/forgot-password"
-                class="text-blue-800 hover:text-blue-600"
+                className="text-blue-800 hover:text-blue-600"
               >
                 ¿Olvidaste tu contraseña?
               </a>
             </p>
             <button
               type="submit"
-              class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
             >
               Continuar
             </button>
           </form>
-          <div class="mt-6 text-center text-sm text-slate-600">
+          <div className="mt-6 text-center text-sm text-slate-600">
             ¿No tienes una cuenta?
             <a
               href="/Registrar"
-              class="font-medium text-blue-700 hover:text-blue-600"
+              className="font-medium text-blue-700 hover:text-blue-600"
             >
               Registrate
             </a>{" "}
