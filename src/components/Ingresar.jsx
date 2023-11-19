@@ -1,7 +1,9 @@
-import { Input } from "postcss";
+import React from "react";
 import Header from "../components/Header";
 import Footer from "./Footer";
-function Ingresar() {
+import { Form, redirect } from "react-router-dom";
+import axios from "axios";
+export default function Ingresar() {
   return (
     <>
       <Header />
@@ -10,7 +12,7 @@ function Ingresar() {
           <h1 className="mb-2 text-3xl font-semibold sm:mb-5 sm:text-5xl">
             Ingresar
           </h1>
-          <form className="w-full">
+          <Form method="post" action="/Ingresar" className="w-full">
             <div className="flex place-content-center place-items-center flex-col">
               <input
                 name="usuario"
@@ -24,26 +26,21 @@ function Ingresar() {
                 placeholder="Contraseña"
               />
             </div>
-            <p class="mb-3 mt-2 text-sm text-gray-500">
+            <p className="mb-3 mt-2 text-sm text-gray-500">
               <a
                 href="/forgot-password"
-                class="text-blue-800 hover:text-blue-600"
+                className="text-blue-800 hover:text-blue-600"
               >
                 ¿Olvidaste tu contraseña?
               </a>
             </p>
-            <button
-              type="submit"
-              class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
-            >
-              Continuar
-            </button>
-          </form>
-          <div class="mt-6 text-center text-sm text-slate-600">
+            <button className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">Ingresar</button>
+          </Form>
+          <div className="mt-6 text-center text-sm text-slate-600">
             ¿No tienes una cuenta?
             <a
               href="/Registrar"
-              class="font-medium text-blue-700 hover:text-blue-600"
+              className="font-medium text-blue-700 hover:text-blue-600"
             >
               Registrate
             </a>{" "}
@@ -55,5 +52,12 @@ function Ingresar() {
     </>
   );
 }
-
-export default Ingresar;
+export const loginUserAction = async ({ request }) => {
+  let result;
+  axios.get("http://localhost:3000/users").then((res) => {
+    result = res.data;
+  });
+  console.log(result);
+  const data = await request.formData();
+  axios.post("http://localhost:3000/users",)
+};

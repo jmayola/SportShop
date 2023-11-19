@@ -3,9 +3,10 @@ import Home from "./routes/Home";
 import Inserts from "./routes/Inserts";
 import Products from "./routes/Products";
 import Update from "./routes/Update";
-import Delete from "./routes/Delete";
+import Delete, {DeleteProductAction} from "./routes/Delete";
+import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
-import Ingresar from "./components/Ingresar";
+import Ingresar, {loginUserAction} from "./components/Ingresar";
 import Registrar from "./components/Registrar";
 import Empleados from "./components/Admin/Empleados";
 import { insertProductAction } from "./components/Products/InsertProduct";
@@ -21,6 +22,11 @@ function App() {
       element: <Home></Home>,
       errorElement: <ErrorPage></ErrorPage>,
       children: [{ index: true, element: <Home></Home> }],
+    },
+    {
+      path: "/admin/facturas",
+      element: <Facturas></Facturas>,
+      errorElement: <ErrorPage></ErrorPage>,
     },
     {
       path: "/products",
@@ -42,6 +48,7 @@ function App() {
     {
       path: "/Ingresar",
       element: <Ingresar></Ingresar>,
+      action: loginUserAction,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
@@ -53,6 +60,7 @@ function App() {
       path: "/products/delete/",
       element: <Delete></Delete>,
       errorElement: <ErrorPage></ErrorPage>,
+      action: DeleteProductAction
     },
     {
       path: "/Empleados",

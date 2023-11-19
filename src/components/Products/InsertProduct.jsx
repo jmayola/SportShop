@@ -45,7 +45,7 @@ export default function InsertProduct() {
           type="file"
           name="image_products"
           placeholder="Ingrese una Imagen"
-          className="p-4 bg-gray-300 border-slate-950 border-2"
+          className="p-4 bg-red-500 border-slate-950 border-2"
           id=""
         />
         <button>submit</button>
