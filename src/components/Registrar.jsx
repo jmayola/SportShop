@@ -43,7 +43,7 @@ function Registrar() {
           <div class="mt-6 text-center text-sm text-slate-600">
             ¿Ya tienes una cuenta?
             <a
-              href="/Ingresar"
+              href="/IngresarW"
               class="font-medium text-blue-700 hover:text-blue-600"
             >
               Ingresar

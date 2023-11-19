@@ -7,10 +7,10 @@ import Delete from "./routes/Delete";
 import ErrorPage from "./routes/error-page";
 import Ingresar from "./components/Ingresar";
 import Registrar from "./components/Registrar";
+import Empleados from "./components/Admin/Empleados";
 import { insertProductAction } from "./components/Products/InsertProduct";
 import { updateProductAction } from "./components/Products/UpdateProduct";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./components/Ingresar";
 function App() {
   // creamos enturador
   const router = createBrowserRouter([
@@ -52,6 +52,11 @@ function App() {
     {
       path: "/products/delete/",
       element: <Delete></Delete>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/Empleados",
+      element: <Empleados></Empleados>,
       errorElement: <ErrorPage></ErrorPage>,
     },
   ]);
