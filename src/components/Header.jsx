@@ -32,11 +32,6 @@ function Header() {
             Ingresar
           </li>
         </Link>
-        <Link to={`/Empleados`}>
-          <li className="link-animation link-typography text-black text-sm font-inter">
-            EMPLEADOS
-          </li>
-        </Link>
         <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
           <Link to={`/Registrar`}>
             <li className=" mx-3 ">Registrar</li>

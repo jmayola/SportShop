@@ -3,12 +3,15 @@ import Home from "./routes/Home";
 import Inserts from "./routes/Inserts";
 import Products from "./routes/Products";
 import Update from "./routes/Update";
-import Delete, {DeleteProductAction} from "./routes/Delete";
+import Delete, { DeleteProductAction } from "./routes/Delete";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
-import Ingresar, {loginUserAction} from "./components/Ingresar";
+import Ingresar, { loginUserAction } from "./components/Ingresar";
 import Registrar from "./components/Registrar";
 import Empleados from "./components/Admin/Empleados";
+import Usuarios from "./components/Admin/Usuarios";
+import Proveedores from "./components/Admin/Proveedores";
+import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import { insertProductAction } from "./components/Products/InsertProduct";
 import { updateProductAction } from "./components/Products/UpdateProduct";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -60,11 +63,26 @@ function App() {
       path: "/products/delete/",
       element: <Delete></Delete>,
       errorElement: <ErrorPage></ErrorPage>,
-      action: DeleteProductAction
+      action: DeleteProductAction,
     },
     {
       path: "/Empleados",
       element: <Empleados></Empleados>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/Usuarios",
+      element: <Usuarios></Usuarios>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/Proveedores",
+      element: <Proveedores></Proveedores>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/ProductosAdmin",
+      element: <ProductosAdmin></ProductosAdmin>,
       errorElement: <ErrorPage></ErrorPage>,
     },
   ]);
