@@ -4,7 +4,6 @@ function ProductsCard(children) {
   let Data = prop.Data;
   let index = prop.i;
   let index2 = prop.id;
-  console.log(Data);
   if (index2) {
     return (
       <>

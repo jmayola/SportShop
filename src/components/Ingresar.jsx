@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import Header from "../components/Header";
 import Footer from "./Footer";
@@ -15,13 +16,14 @@ export default function Ingresar() {
           <Form method="post" action="/Ingresar" className="w-full">
             <div className="flex place-content-center place-items-center flex-col">
               <input
-                name="usuario"
+                name="username"
                 type="text"
                 className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                 placeholder="Usuario"
               />
               <input
                 type="password"
+                name="password"
                 className="block w-full rounded-lg border border-gray-300 px-3 py-2 my-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1 "
                 placeholder="Contraseña"
               />
@@ -34,7 +36,9 @@ export default function Ingresar() {
                 ¿Olvidaste tu contraseña?
               </a>
             </p>
-            <button className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">Ingresar</button>
+            <button className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">
+              Ingresar
+            </button>
           </Form>
           <div className="mt-6 text-center text-sm text-slate-600">
             ¿No tienes una cuenta?
@@ -43,21 +47,31 @@ export default function Ingresar() {
               className="font-medium text-blue-700 hover:text-blue-600"
             >
               Registrate
-            </a>{" "}
+            </a>
           </div>
         </div>
       </section>
-
       <Footer></Footer>
     </>
   );
 }
+// eslint-disable-next-line react-refresh/only-export-components
 export const loginUserAction = async ({ request }) => {
-  let result;
-  axios.get("http://localhost:3000/users").then((res) => {
-    result = res.data;
-  });
-  console.log(result);
   const data = await request.formData();
-  axios.post("http://localhost:3000/users",)
+  const submission = {
+    username: data.get("username"),
+    password: data.get("password"),
+  };
+  axios
+    .post("http://localhost:3000/users", submission)
+    .catch((err) => {
+      if (err.response.status == 505)
+        alert("Usuario Invalido, vuelve a ingresar");
+    })
+    .then((res) => {
+      if (res.status == 200) {
+        localStorage.setItem("usuario", submission.username);
+      }
+    })
+      return redirect("/")
 };

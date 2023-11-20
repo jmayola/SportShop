@@ -11,7 +11,6 @@ function MainContent() {
       return setData(data);
     });
   }, []);
-  console.log(Data);
   if (Data.length == 0) {
     return (
       <>

@@ -1,11 +1,16 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const express = require("express")
 const cors = require("cors")
 const sqlite3 = require("sqlite3")
 const sqlite = sqlite3.verbose();
-const nodemon = require("nodemon")
 let sql;
-
+var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+let validUserRegex = /^[ñÑa-zñÑA-ZñÑ0-9]*$/
+let validFullnameRegex = /^[ñÑa-zñÑA-ZñÑ]+ [ñÑa-zñÑA-ZñÑ]\w+$/
 const app = express()
+app.use(express.json())
+app.use(cors())
 const db = new sqlite.Database(
   "./database/products.db",
   sqlite.OPEN_READWRITE,
@@ -20,10 +25,15 @@ const db2 = new sqlite.Database(
     if (err) return console.error(err.message);
   }
 )
-// db2.run("CREATE TABLE users(username VARCHAR(50) PRIMARY KEY, password VARCHAR(100) NOT NULL, fullname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL)", (err)=>{
-//   console.log("Se ha detectado un Error" + err.message)
+// db2.run("CREATE TABLE users(username VARCHAR(50) PRIMARY KEY, password VARCHAR(100) NOT NULL, fullname VARCHAR(100) NOT NULL, email VARCHAR(150) NOT NULL, tipo VARCHAR(50) NOT NULL)", (err)=>{
+//   if(err){
+//    console.log("Se ha detectado un Error" + err.message)
+//   }
+//   else{
+//    console.log("Tabla Creada")
+//   }
 // })
-// sql = `CREATE TABLE products(id INTEGER PRIMARY KEY, product_name, price, mark)`
+ //sql = `CREATE TABLE products(id INTEGER PRIMARY KEY, product_name, price, mark)`
 
 
 
@@ -33,6 +43,13 @@ const db2 = new sqlite.Database(
 
 
 
+function INSERTUSER(username,password,fullname,email,tipo) {
+  sql = `INSERT INTO users(username, password, fullname, email,tipo) VALUES(?,?,?,?,?)`;
+  db2.run(sql, [username,password,fullname,email,tipo], (err) => {
+    if (err) return console.error(err.message);
+    else console.log("ingreso database2 exitoso");
+  });
+}
 function SELECTUSER() {
   sql = `SELECT * FROM users`;
   db.all(sql, [], (err, rows) => {
@@ -41,24 +58,52 @@ function SELECTUSER() {
     rows.forEach(row => {
       arr.push(row) //añadimos a un array
     })
-    console.log(rows)
     app.get("/users", (req,res)=>{
       res.json(arr) // mostramos el array de objetos para visualizarlo
     })
-    console.log("datos de usuarios cargados en el puerto 3000")
+    app.post("/users", (req,res)=>{
+      let prop = req.body
+      let username = prop.username
+      let password = prop.password
+      arr.forEach((val,i)=>{
+        console.log(arr)
+        console.log(arr[i].username)
+        console.log(arr[i].password)
+        if(username == arr[i].username && password == arr[i].password){
+          console.log("resultado valido")
+        return res.sendStatus(200)
+        }
+      })
+      res.sendStatus(505)
+    })
   })
 }
-function INSERTUSER(username,password,fullname,email) {
-  sql = `INSERT INTO users(username, password, fullname, email) VALUES(?,?,?,?)`;
-  db2.run(sql, [username,password,fullname,email], (err) => {
-    if (err) return console.error(err.message);
-    else console.log("ingreso database2 exitoso");
-  });
-}
 // INSERTUSER("j8li", 192371,"julianmayola","juli@gmail.com")
+
+app.post("/users/register", (req,res)=>{
+  let prop = req.body
+  let username = prop.user.toString()
+  let password = prop.password.toString()
+  let fullname = prop.fullname.toString()
+  let email = prop.email.toString()
+  //validacion de insecion
+  console.log(username.length)
+  console.log(password.length)
+  console.log(fullname.length)
+  console.log(email.length)
+   if(username.match(validUserRegex) && username.length < 49 && password.match(validUserRegex) && password.length < 99 && fullname.length < 254 && fullname.match(validFullnameRegex) && email.length < 100 && email.match(validRegex)){
+     console.log("respuesta valida")
+     INSERTUSER(username,password,fullname,email,"cliente")
+     res.sendStatus(200)
+   }
+   else{
+    res.sendStatus(505)
+   }
+   //recordar bajar el mail a 100 y le fullname tambiens
+})
+
+
 SELECTUSER()
-
-
 
 
 //////////////////////////////////////////////////////////
@@ -109,15 +154,15 @@ function CREATE_TABLE(){
     if(err) return console.error(err.message)
   })
 }
-function DROP_TABLE(){
-  sql = "DROP TABLE products"
-  db.run(sql)
+function DROP_TABLE(table){
+  sql = `DROP TABLE ${table}`
+  db.run(sql, (res)=>{
+    console.log(res.message)
+  })
 }
 //DROP_TABLE()
 //CREATE_TABLE()
 SELECT()
-app.use(express.json())
-app.use(cors())
 app.post("/products", (req,res)=>{
   let prop = req.body
   INSERT(prop.name_products, prop.desc_products, prop.price_products, prop.stock_products,prop.category_products, prop.image_products)
