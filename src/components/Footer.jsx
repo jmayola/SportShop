@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <footer className="flex place-items-end justify-around bg-orange-500 text-center h-full">
+    <footer className="flex place-items-end justify-around bg-black text-center h-full text-white">
       <div>
         <h2>All Rights Reserved</h2>
       </div>
@@ -12,7 +12,9 @@ function Footer() {
       <div>
         <h4>contactos:</h4>
         <div>
-          <h5><Link to={`https://www.instagram.com`}>instagram</Link></h5>
+          <h5>
+            <Link to={`https://www.instagram.com`}>instagram</Link>
+          </h5>
           <h5>Linkein</h5>
           <h5>github</h5>
         </div>
