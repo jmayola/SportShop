@@ -23,7 +23,6 @@ function Header() {
     return <HeaderNoRegister></HeaderNoRegister>
   }
   else if(setus[0].tipo == "Admin") {
-    console.log("admin")
     return (
       <HeaderAdmin values={setus}></HeaderAdmin>
     );

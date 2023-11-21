@@ -27,10 +27,11 @@ function ProductsCard(children) {
   } else {
     return (
       <>
-        <div className="flex justify-center p-1 border border-gray-300  hover:shadow-2xl duration-500 ">
-          <div className="gap-10">
+        <div className="flex justify-around flex-col border border-gray-300  hover:shadow-2xl duration-500 ">
+          <div className="">
             <img src={"/" + Data[index].image_products} alt="" />
-            <h2 className="p-2 font-inter font-bold">
+            <div className=" bg-orange-400 justify-end align-bottom">
+            <h2 className="p-2 font-inter font-bold text-center  underline">
               {Data[index].name_products}
             </h2>
             <span className="font-inter font-bold p-2">
@@ -39,6 +40,7 @@ function ProductsCard(children) {
             <span className="font-inter font-bold p-2">
               {Data[index].desc_products}
             </span>
+            </div>
           </div>
         </div>
       </>

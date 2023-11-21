@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import SubHeader from "../SubHeader"
 function HeaderAdmin(data) {
   let setus = data.values
-  console.log(setus)
   return (
-    <>
+    <div>
     <header className=" flex w-full bg-white justify-between align-middle line border-b border-gray-500 list-none max-lg:flex-col  top-0">
       <img
         className="mx-2 w-16 max-lg:m-auto"
@@ -41,14 +40,14 @@ function HeaderAdmin(data) {
           Salir
         </button>
         <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
-          <Link to={`/admin`}>
+          <Link to={`/Empleados`}>
             <li className=" mx-3 ">{setus[0].username}</li>
           </Link>
         </button>
       </nav>
     </header>
     <SubHeader></SubHeader>
-  </>
+  </div>
   )
 }
 

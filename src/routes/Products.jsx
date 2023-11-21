@@ -26,12 +26,18 @@ function Products() {
   } else {
     return (
       <>
-        <Header />
-        <section className="grid place-content-center grid-cols-5 m-10 max-md:grid-cols-2 gap-5">
+      <Header></Header>
+        <div className="grid grid-cols-4">
+        <div className="min-h-screen col-start-1 col-end-2 bg-slate-300">
+          <h1 className="m-10 text-center font-bold underline"
+          >Filtros y Ayudas de Busqueda</h1>
+        </div>
+        <section className="grid place-content-center grid-cols-3 m-10 max-md:grid-cols-2 col-start-2 col-end-5 gap-10">
           {Data.map((val, i) => {
             return <ProductsCard value={{ Data, i }} key={i}></ProductsCard>;
           })}
         </section>
+        </div>
         <Footer />
       </>
     );
