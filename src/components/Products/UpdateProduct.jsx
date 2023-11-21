@@ -60,8 +60,25 @@ export default function UpdateProduct(children) {
           className="p-4 bg-gray-300 border-slate-950 border-2"
           id=""
         />
+        <label htmlFor="provider_products" className="m-auto">Proveedor del Producto:</label>
+        <input
+          type="text"
+          name="provider_products"
+          defaultValue={Data[id].category_products}
+          placeholder="Ingrese una Marca"
+          className="p-4 bg-gray-300 border-slate-950 border-2"
+          id=""
+        />
+        <label htmlFor="mark_products" className="m-auto">Marca del Producto:</label>
+        <input
+          type="text"
+          name="mark_products"
+          defaultValue={Data[id].category_products}
+          placeholder="Ingrese una Marca"
+          className="p-4 bg-gray-300 border-slate-950 border-2"
+          id=""
+        />
         <label htmlFor="image_products" className="m-auto">Imagen del Producto:</label>
-
         <input
           type="file"
           name="image_products"
@@ -71,7 +88,7 @@ export default function UpdateProduct(children) {
         />
         <input type="hidden"
         name="id_products"
-        value={id} />
+        value={Data[id].id_products} />
         <button className="grid col-end-3 col-start-1 p-5 bg-orange-400">Modificar</button>
       </Form>
     </>
@@ -86,7 +103,9 @@ export const updateProductAction = async ({ request }) => {
     stock_products: data.get("stock_products"),
     category_products: data.get("category_products"),
     image_products: data.get("image_products"),
-    id_products: data.get("id_products")
+    id_products: data.get("id_products"),
+    provider_products: data.get("provider_products"),
+    mark_products: data.get("mark_products"),
   };
   console.log(submission);
   axios.put("http://localhost:3000/products", submission);

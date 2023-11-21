@@ -12,7 +12,7 @@ function HeaderAdmin(data) {
         alt="imagen "
       />
 
-      <nav className="flex flex-row font-sans place-items-center  justify-between px-10 max-lg:flex-col">
+      <nav className="flex flex-row gap-1 font-sans place-items-center  justify-between px-10 max-lg:flex-col">
         <Link to={`/`}>
           <li className="link-animation link-typography text-black text-sm font-inter">
             Inicio
@@ -35,11 +35,11 @@ function HeaderAdmin(data) {
         </Link>
         <button
           onClick={() => localStorage.removeItem("usuario")}
-          className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-red-500 px-2 hover:bg-red-700 active:bg-neutral-900"
+          className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-red-500 px-2 hover:bg-red-700 active:bg-neutral-900 gap-4"
         >
           Salir
         </button>
-        <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
+        <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 gap-4 ">
           <Link to={`/Empleados`}>
             <li className=" mx-3 ">{setus[0].username}</li>
           </Link>

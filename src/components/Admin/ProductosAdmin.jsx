@@ -126,7 +126,7 @@ function ProductosAdmin() {
               Borrar Producto
             </Link>
             <Link
-              to={"/products/update/" + ModObj[0].id_products}
+              to={"/products/update/" + (ModObj[0].id_products-1)}
               className="p-5 bg-orange-500 rounded-md font-medium text-white"
             >
               Modificar

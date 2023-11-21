@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <footer className="flex place-items-end justify-around bg-black text-center h-full text-white">
-      <div>
-        <h2>All Rights Reserved</h2>
+    <footer className="flex justify-around items-center align-middle bg-black text-center p-5 h-full text-white">
+      <div className="flex items-center">
+        <h2 >All Rights Reserved</h2>
       </div>
       <div>
         <h2>SportShop</h2>
         <h3>El deporte de alto rendimiento al alcance.</h3>
       </div>
       <div>
-        <h4>contactos:</h4>
+        <h4>Contactos:</h4>
         <div>
           <h5>
-            <Link to={`https://www.instagram.com`}>instagram</Link>
+            <Link to={`https://www.instagram.com`}>Instagram</Link>
           </h5>
           <h5>Linkein</h5>
-          <h5>github</h5>
+          <h5>Github</h5>
         </div>
         <h4></h4>
       </div>

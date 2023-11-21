@@ -15,6 +15,7 @@ import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import { insertProductAction } from "./components/Products/InsertProduct";
 import { updateProductAction } from "./components/Products/UpdateProduct";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Product from "./routes/Product";
 function App() {
   // creamos enturador
   const router = createBrowserRouter([
@@ -34,6 +35,11 @@ function App() {
     {
       path: "/products",
       element: <Products></Products>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/products/:id",
+      element: <Product></Product>,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
