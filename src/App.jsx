@@ -7,7 +7,7 @@ import Delete, { DeleteProductAction } from "./routes/Delete";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
 import Ingresar, { loginUserAction } from "./components/Ingresar";
-import Registrar from "./components/Registrar";
+import Registrar, {registerUserAction} from "./components/Registrar";
 import Empleados from "./components/Admin/Empleados";
 import Usuarios from "./components/Admin/Usuarios";
 import Proveedores from "./components/Admin/Proveedores";
@@ -15,6 +15,7 @@ import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import { insertProductAction } from "./components/Products/InsertProduct";
 import { updateProductAction } from "./components/Products/UpdateProduct";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Product from "./routes/Product";
 function App() {
   // creamos enturador
   const router = createBrowserRouter([
@@ -34,6 +35,11 @@ function App() {
     {
       path: "/products",
       element: <Products></Products>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/products/:id",
+      element: <Product></Product>,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
@@ -57,6 +63,7 @@ function App() {
     {
       path: "/Registrar",
       element: <Registrar></Registrar>,
+      action: registerUserAction,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {

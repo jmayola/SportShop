@@ -1,21 +1,62 @@
 import Header from "../Header";
 import Footer from "../Footer";
-import SubHeader from "../SubHeader";
-
-function Usuarios() {
+import axios from "axios";
+import { useState,useEffect } from "react";
+function Proveedores() {
+  const [Provider, setProvider] = useState([]);
+  const [Search, SetSearch] = useState([]);
+  const [ModObj, setModObj] = useState([{}]);
+  useEffect(() => {
+    axios.get("http://localhost:3000/providers").then((res) => {
+      let data = res.data;
+      return setProvider(data);
+    });
+  }, [Provider]);
+  function FindProdcuts(e) {
+    let arr = [];
+    Provider.map((val, i) => {
+      if (val.provider.includes(e)) {
+        arr.push(Provider[i].provider);
+      }
+      SetSearch(arr);
+    });
+  }
+  function setValue(e) {
+    let arr = Provider.filter((val, i) => {
+      if (e == val.provider) return true;
+    });
+    setModObj(arr);
+  }
   return (
     <>
       <Header></Header>
-      <SubHeader></SubHeader>
-
-      <section className="flex justify-center max-[800px]:">
+      <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-5">
             <input
               type="search"
+              autoFocus
+              onChange={(e) => {
+                FindProdcuts(e.target.value);
+                document.getElementById("selectProd").style.display = "block";
+              }}
               className="block w-1/2 rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-              placeholder="Buscar proveedor"
+              placeholder="Buscar Usuario"
             />
+            <select
+              className="hidden rounded-lg min-w-[300px] text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+              name=""
+              onClick={(e) => setValue(e.target.value)}
+              id="selectProd"
+            >
+              {Search.map((val, i) => {
+                return (
+                  <option value={val} key={i}>
+                    {val}
+                  </option>
+                );
+              })}
+            </select>
           </div>
           <div className="flex justify-between w-full  px-10">
             <div className="   w-full  ">
@@ -65,4 +106,4 @@ function Usuarios() {
   );
 }
 
-export default Usuarios;
+export default Proveedores;

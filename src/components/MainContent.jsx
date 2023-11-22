@@ -11,7 +11,6 @@ function MainContent() {
       return setData(data);
     });
   }, []);
-  console.log(Data);
   if (Data.length == 0) {
     return (
       <>
@@ -33,7 +32,7 @@ function MainContent() {
             <h1 className="font-semibold text-4xl">Productos</h1>
           </div>
           {/* Grid de productos*/}
-          <section className=" grid grid-cols-5 gap-5  ">
+          <section className=" grid grid-cols-4 m-5 p-5 gap-5 ">
             {Data.map((val, i) => {
               return <ProductsCard value={{ Data, i }} key={i}></ProductsCard>;
             })}
