@@ -18,11 +18,15 @@ function Delete() {
       <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
           <div className="flex justify-center gap-5">
-            <Form method="POST" className="flex flex-col gap-10" action="/products/delete">
+            <Form
+              method="POST"
+              className="flex flex-col gap-10"
+              action="/products/delete"
+            >
               <select
                 name="selectDelete"
                 id=""
-                className="text-center m-auto w-1/2 bg-slate-500"
+                className="text-center m-auto w-full  border hover:shadow-2xl duration-500  rounded-md font-medium black"
               >
                 {Data.map((val, i) => {
                   return (
@@ -33,7 +37,11 @@ function Delete() {
                   );
                 })}
               </select>
-              <input type="submit" className="p-5 bg-orange-500 rounded-md font-medium text-white" value="Borrar" />
+              <input
+                type="submit"
+                className="p-4 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+                value="Borrar"
+              />
             </Form>
           </div>
         </div>

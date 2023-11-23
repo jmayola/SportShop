@@ -13,22 +13,22 @@ function HeaderCliente(data) {
 
         <nav className="flex flex-row font-sans place-items-center  justify-between px-10 max-lg:flex-col">
           <Link to={`/`}>
-            <li className="link-animation link-typography text-black text-sm font-inter">
+            <li className="link-animation link-typography  text-sm font-inter">
               Inicio
             </li>
           </Link>
           <Link to={`/products`}>
-            <li className=" link-animation link-typography font-inter">
+            <li className=" link-animation link-typography text-sm font-inter">
               Productos
             </li>
           </Link>
           <a href={`/#aboutus`}>
-            <li className="link-animation link-typography font-inter">
+            <li className="link-animation link-typography text-sm font-inter">
               Nosotros
             </li>
           </a>
           <Link to={`https:/github.com/jmayola/sportshop`}>
-            <li className="link-animation link-typography font-inter">
+            <li className="link-animation link-typography text-sm font-inter">
               Github
             </li>
           </Link>
