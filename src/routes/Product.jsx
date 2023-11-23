@@ -24,33 +24,33 @@ function Product() {
       <>
         <Header></Header>
         <div className="grid grid-cols-2 m-auto w-2/3 h-2/3 border max-xl:grid-cols-1  border-gray-300">
-          <div className=" flex justify-center w-fit m-auto">
+          <div className=" flex justify-center font-black w-fit m-auto">
             <img
               src={"../" + Data[id].image_products}
               className="w-96 min-h-[200px]  border-gray-300 object-contain"
               alt=""
             />
           </div>
-          <div className="flex gap-5 flex-col justify-between m-5 bg-slate-400 rounded-md p-5">
-            <h3 className="text-4xl">{Data[id].name_products}</h3>
+          <div className="flex gap-5 flex-col justify-between m-5 border border-gray-300 rounded-md p-5">
+            <h3 className="text-3xl">{Data[id].name_products}</h3>
             <h3 className="text2xl">Descripcion:</h3>
-            <h3 className="p-5 bg-gray-300 rounded-md">
+            <h3 className="p-2 bg-gray-100 rounded-md">
               {Data[id].desc_products}
             </h3>
-            <div className="flex align-middle justify-between rounded-md bg-gray-300 p-5">
-              <h3 className="text-right justify-end text-4xl">
+            <div className="flex align-middle justify-between rounded-md p-2">
+              <h3 className="text-right justify-end text-4xl font-light">
                 ${Data[id].price_products}
               </h3>
-              <input
-                type="number"
-                readOnly
-                defaultValue={0}
-                className="rounded-md w-1/3 text-center text-4xl"
-              />
-              <button className="p-5 bg-orange-500 rounded-md font-medium text-white">
-                Comprar
-              </button>
             </div>
+            <input
+              type="number"
+              readOnly
+              defaultValue={0}
+              className="rounded-md w-1/3 text-center text-4xl border border-gray-200"
+            />
+            <button className="p-5 bg-red-600  rounded-md font-medium text-white">
+              Comprar
+            </button>
           </div>
         </div>
         <Footer></Footer>

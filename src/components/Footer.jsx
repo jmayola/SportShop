@@ -3,7 +3,7 @@ function Footer() {
   return (
     <footer className="flex justify-around items-center align-middle bg-black text-center p-5 h-full text-white">
       <div className="flex items-center">
-        <h2 >All Rights Reserved</h2>
+        <h2>All Rights Reserved</h2>
       </div>
       <div>
         <h2>SportShop</h2>
@@ -12,9 +12,7 @@ function Footer() {
       <div>
         <h4>Contactos:</h4>
         <div>
-          <h5>
-            <Link to={`https://www.instagram.com`}>Instagram</Link>
-          </h5>
+          <Link to={`https://www.instagram.com`}>Instagram</Link>
           <h5>Linkein</h5>
           <h5>Github</h5>
         </div>
