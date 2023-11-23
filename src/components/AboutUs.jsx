@@ -9,7 +9,7 @@ function AboutUs() {
 
       <section className="md:grid md:grid-cols-2 flex flex-col">
         <img src="public/company.jpg" alt="" className="w-auto rounded-lg" />
-        <p className=" text-justify bg-slate-200 p-5 rounded-md w-auto mx-5 my-3">
+        <p className=" text-justify bg-gray-50 p-5 rounded-md w-auto mx-5 my-3">
           Desde su fundación en 2010, nuestra empresa ha experimentado un
           crecimiento significativo y una evolución en la gama de productos que
           ofrecemos. Iniciamos nuestras operaciones con la venta de remeras,
@@ -21,7 +21,7 @@ function AboutUs() {
         </p>
       </section>
       <section className="md:grid md:grid-cols-2 flex flex-col">
-        <p className="text-justify bg-slate-200 p-5 rounded-md w-auto mx-5 my-3">
+        <p className="text-justify bg-gray-50 p-5 rounded-md w-auto mx-5 my-3">
           A lo largo de estos años, hemos pasado de contar con tres empleados
           iniciales a formar un sólido equipo de 30 personas que colaboran de
           manera coordinada para el éxito de la empresa. Esta fuerza laboral
@@ -32,7 +32,7 @@ function AboutUs() {
         <img src="public/about2.png" alt="" className="w-auto rounded-lg" />
       </section>
       <section>
-        <p className="-justify bg-slate-200 p-5 rounded-md">
+        <p className="-justify bg-gray-50 p-5 rounded-md">
           Aunque no contamos con un local físico para la venta directa, nuestra
           oficina central de coordinación ubicada en Av. Corrientes 1115, C1010
           CABA, sirve como el epicentro desde el cual gestionamos todas nuestras
