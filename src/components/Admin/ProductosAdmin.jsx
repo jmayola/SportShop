@@ -115,7 +115,7 @@ function ProductosAdmin() {
           <div className="flex justify-center gap-5">
             <Link
               to={"/products/Insert"}
-              className="p-5 bg-orange-500 rounded-md font-medium text-white"
+              className="p-5  border border-gray-300 h-full  hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Insertar
             </Link>

@@ -1,7 +1,7 @@
 import Header from "../Header";
 import Footer from "../Footer";
 import axios from "axios";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 function Empleados() {
   const [User, setUser] = useState([]);
   const [Search, SetSearch] = useState([]);
@@ -13,7 +13,7 @@ function Empleados() {
       price_products: 999,
       stock_products: 10,
       category_products: "facha",
-      image_products: "botin1.png", 
+      image_products: "botin1.png",
     },
   ]);
   useEffect(() => {
@@ -52,7 +52,7 @@ function Empleados() {
                 document.getElementById("selectProd").style.display = "block";
               }}
               className="block w-1/2 rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-              placeholder="Buscar Usuario"
+              placeholder="Buscar empleado"
             />
             <select
               className="hidden rounded-lg min-w-[300px] text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
@@ -69,7 +69,7 @@ function Empleados() {
               })}
             </select>
           </div>
-          
+
           <div className="flex justify-between w-full  px-10">
             <div className="   w-full  ">
               <img src="./public/logo-empresa.png" alt="" className="w-auto" />
@@ -106,9 +106,7 @@ function Empleados() {
                   />
                 </div>
                 <div className="w-full">
-                  <h2 className="flex justify-start px-2">
-                    Sector de Trabajo
-                  </h2>
+                  <h2 className="flex justify-start px-2">Sector de Trabajo</h2>
                   <input
                     name="usuario"
                     type="text"
