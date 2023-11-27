@@ -6,13 +6,18 @@ import Update from "./routes/Update";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
 import Ingresar, { loginUserAction } from "./components/Ingresar";
-import Registrar, {registerUserAction} from "./components/Registrar";
+import Registrar, { registerUserAction } from "./components/Registrar";
 import Empleados from "./components/Admin/Empleados";
 import Usuarios from "./components/Admin/Usuarios";
 import Proveedores from "./components/Admin/Proveedores";
 import ProductosAdmin from "./components/Admin/ProductosAdmin";
+import User from "./routes/User";
 import { insertProductAction } from "./components/Products/InsertProduct";
-import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import Product from "./routes/Product";
 import axios from "axios";
 
@@ -34,9 +39,9 @@ function App() {
     },
     {
       path: "/products",
-      loader: async ()=>{
-        let data = await axios.get("http://localhost:3000")
-        return data
+      loader: async () => {
+        let data = await axios.get("http://localhost:3000");
+        return data;
       },
       element: <Products></Products>,
       errorElement: <ErrorPage></ErrorPage>,
@@ -71,8 +76,8 @@ function App() {
         axios.put("http://localhost:3000/products", submission);
         return redirect("/products");
       },
-      loader: async ()=>{
-        return axios.get("http://localhost:3000")
+      loader: async () => {
+        return axios.get("http://localhost:3000");
       },
       errorElement: <ErrorPage></ErrorPage>,
     },
@@ -106,6 +111,16 @@ function App() {
     {
       path: "/ProductosAdmin",
       element: <ProductosAdmin></ProductosAdmin>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/ProductosAdmin",
+      element: <ProductosAdmin></ProductosAdmin>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/User",
+      element: <User></User>,
       errorElement: <ErrorPage></ErrorPage>,
     },
   ]);

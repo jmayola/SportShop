@@ -32,11 +32,13 @@ function Product() {
             />
           </div>
           <div className="flex gap-5 flex-col justify-between m-5 border border-gray-300 rounded-md p-5">
-            <h3 className="text-3xl">{Data[id].name_products}</h3>
-            <h3 className="text2xl">Descripcion:</h3>
-            <h3 className="p-2 bg-gray-100 rounded-md">
-              {Data[id].desc_products}
-            </h3>
+            <div className="gap-2 py-5">
+              <h3 className="text-3xl">{Data[id].name_products}</h3>
+              <h3 className="text2xl">Descripcion:</h3>
+              <h3 className="p-2 bg-gray-100 rounded-md">
+                {Data[id].desc_products}
+              </h3>
+            </div>
             <div className="flex align-middle justify-between rounded-md p-2">
               <h3 className="text-right justify-end text-4xl font-light">
                 ${Data[id].price_products}

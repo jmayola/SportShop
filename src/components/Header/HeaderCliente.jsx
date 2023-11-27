@@ -32,19 +32,20 @@ function HeaderCliente(data) {
               Github
             </li>
           </Link>
+
+          <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
+            <Link to={`/User`}>
+              <li className=" mx-3 ">{setus[0].username}</li>
+            </Link>
+          </button>
           <button
             onClick={() => {
               localStorage.removeItem("usuario");
-              location.reload()
+              location.reload();
             }}
             className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-red-500 px-2 hover:bg-red-700 active:bg-neutral-900"
           >
             Salir
-          </button>
-          <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
-            <Link to={`/admin`}>
-              <li className=" mx-3 ">{setus[0].username}</li>
-            </Link>
           </button>
         </nav>
       </header>
