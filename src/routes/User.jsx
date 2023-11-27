@@ -24,18 +24,27 @@ function User() {
   return (
     <>
       <Header />
-      <section className="flex justify-center w-full">
+      <section className="flex justify-center ">
         <form
           action=""
-          className="flex justify-center bg-gray-200 w-1/2 h-1/2 "
+          className="flex justify-center bg-gray-200 w-2/5 h-full "
         >
           <div>
             <img src="" alt="user" />
-            div
-            <div>
+            <div className="flex justify-between">
+              <p className=" bg-gray-500">Usuario</p>
               <p>{User.username}</p>
+            </div>
+            <div className="flex justify-between">
+              <p className="p-2 bg-gray-500">Email</p>
               <p>{User.email}</p>
+            </div>
+            <div className="flex justify-between">
+              <p className="p-2 bg-gray-500">Contraseña</p>
               <p>{User.password}</p>
+            </div>
+            <div className="flex justify-between">
+              <p className="p-2 bg-gray-500">Tipo de Usuario</p>
               <p>{User.tipo}</p>
             </div>
           </div>
