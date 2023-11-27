@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import axios from 'axios';
-import DeleteProducts from '../components/Products/DeleteProducts';
 function Facturas() {
     const [Data, setData] = useState([]);
     useEffect(() => {
