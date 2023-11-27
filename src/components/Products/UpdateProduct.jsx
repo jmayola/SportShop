@@ -90,7 +90,7 @@ export default function UpdateProduct(children) {
           <input
             type="text"
             name="mark_products"
-            defaultValue={Data[i].category_products}
+            defaultValue={Data[ii].category_products}
             placeholder="Ingrese una Marca"
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
@@ -108,7 +108,7 @@ export default function UpdateProduct(children) {
           <input
             type="hidden"
             name="id_products"
-            value={Data[i].id_products}
+            value={Data[id].id_products}
           />
           <button className="grid col-end-3 col-start-1 p-5 bg-red-600 text-white ">
             Modificar
