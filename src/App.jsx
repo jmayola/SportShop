@@ -13,9 +13,10 @@ import Usuarios from "./components/Admin/Usuarios";
 import Proveedores from "./components/Admin/Proveedores";
 import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import { insertProductAction } from "./components/Products/InsertProduct";
-import { updateProductAction } from "./components/Products/UpdateProduct";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
 import Product from "./routes/Product";
+import axios from "axios";
+
 function App() {
   // creamos enturador
   const router = createBrowserRouter([
@@ -34,6 +35,10 @@ function App() {
     },
     {
       path: "/products",
+      loader: async ()=>{
+        let data = await axios.get("http://localhost:3000")
+        return data
+      },
       element: <Products></Products>,
       errorElement: <ErrorPage></ErrorPage>,
     },
@@ -49,9 +54,27 @@ function App() {
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
-      path: "/products/update/:id",
+      path: "/products/update/:i",
       element: <Update></Update>,
-      action: updateProductAction,
+      action: async ({ request }) => {
+        const data = await request.formData();
+        const submission = {
+          name_products: data.get("name_products"),
+          desc_products: data.get("desc_products"),
+          price_products: data.get("price_products"),
+          stock_products: data.get("stock_products"),
+          category_products: data.get("category_products"),
+          image_products: data.get("image_products"),
+          id_products: data.get("id_products"),
+          provider_products: data.get("provider_products"),
+          mark_products: data.get("mark_products"),
+        };
+        axios.put("http://localhost:3000/products", submission);
+        return redirect("/products");
+      },
+      loader: async ()=>{
+        return axios.get("http://localhost:3000")
+      },
       errorElement: <ErrorPage></ErrorPage>,
     },
     {

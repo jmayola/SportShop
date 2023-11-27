@@ -72,9 +72,8 @@ export const registerUserAction = async ({ request }) => {
     if(res.response.status == 505){
       alert("Algunos campos poseen caracteres invalidos y/o superan los limites indicados")
     }
-    else{
-      alert("Registro Exitoso")
-    }
-  });
+  }).then((res)=>{
+    console.log(res)
+  })
   return redirect("/");
 };

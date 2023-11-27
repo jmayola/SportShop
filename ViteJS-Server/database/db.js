@@ -133,10 +133,10 @@ function INSERTEMPLOYEE(username, fullname, address, dni, worksector) {
 
 function INSERTUSER(username, password, fullname, email, tipo) {
   sql = `INSERT INTO users(username, password, fullname, email,tipo) VALUES(?,?,?,?,?)`;
-  db2.run(sql, [username, password, fullname, email, tipo], (err) => {
-    if (err) return console.error(err.message);
-    else console.log("ingreso database2 exitoso");
-  });
+  return db2.run(sql, [username, password, fullname, email, tipo], (err,asd)=>{
+    console.log("error detectado"+err)
+    console.log(asd)
+  })
 }
 function SELECTUSER() {
   sql = `SELECT * FROM users`;
@@ -153,47 +153,51 @@ function SELECTUSER() {
       let prop = req.body;
       let username = prop.username;
       let password = prop.password;
+      console.log(username)
+      console.log(password)
       arr.forEach((val, i) => {
         if (username == arr[i].username && password == arr[i].password) {
+          res.header("Autentication","true")
           console.log("resultado valido");
-          return res.sendStatus(200);
+          res.sendStatus(200);
         }
       });
-      res.sendStatus(505);
+    });
+    app.post("/users/register", (req, res) => {
+      let prop = req.body;
+      let username = prop.user;
+      let password = prop.password;
+      let fullname = prop.fullname;
+      let email = prop.email;
+      //validacion de insecion
+      console.log(username);
+      console.log(password);
+      console.log(fullname);
+      console.log(email);
+      if (
+        username.match(validUserRegex) &&
+        username.length < 49 &&
+        password.match(validUserRegex) &&
+        password.length < 99 &&
+        fullname.length < 254 &&
+        fullname.match(validFullnameRegex) &&
+        email.length < 100 &&
+        email.match(validRegex)
+      ) {
+        console.log("respuesta valida");
+        try {
+          INSERTUSER(username, password, fullname, email, "cliente");
+        } catch (error) {
+          console.log(error)
+        }
+      } else {
+        console.log("ingreso invalido")
+      }
+      //recordar bajar el mail a 100 y le fullname tambiens
     });
   });
 }
 //INSERTUSER("Mayola", "julian","julian mayola","julianmayola131@gmail.com", "Admin")
-
-app.post("/users/register", (req, res) => {
-  let prop = req.body;
-  let username = prop.user.toString();
-  let password = prop.password.toString();
-  let fullname = prop.fullname.toString();
-  let email = prop.email.toString();
-  //validacion de insecion
-  console.log(username.length);
-  console.log(password.length);
-  console.log(fullname.length);
-  console.log(email.length);
-  if (
-    username.match(validUserRegex) &&
-    username.length < 49 &&
-    password.match(validUserRegex) &&
-    password.length < 99 &&
-    fullname.length < 254 &&
-    fullname.match(validFullnameRegex) &&
-    email.length < 100 &&
-    email.match(validRegex)
-  ) {
-    console.log("respuesta valida");
-    INSERTUSER(username, password, fullname, email, "cliente");
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(505);
-  }
-  //recordar bajar el mail a 100 y le fullname tambiens
-});
 
 SELECTUSER();
 
@@ -255,8 +259,9 @@ function DROP_TABLE(table) {
 SELECT();
 app.post("/products", (req, res) => {
   let prop = req.body;
-  console.log(prop.name_products.length < 49 &&
-    prop.name_products.match(validUserRegex))
+  console.log(
+    prop.name_products.length < 49 && prop.name_products.match(validUserRegex)
+  );
   if (
     prop.name_products.length < 49 &&
     prop.name_products.match(validUserRegex) &&
@@ -270,8 +275,8 @@ app.post("/products", (req, res) => {
     prop.provider_products.length < 100 &&
     prop.provider_products.match(validUserRegex) &&
     prop.mark_products.match(validUserRegex) &&
-    prop.mark_products.length < 100 
-    ) {
+    prop.mark_products.length < 100
+  ) {
     console.log("respuesta valida");
     INSERT(
       prop.name_products,
@@ -285,12 +290,9 @@ app.post("/products", (req, res) => {
     );
     res.sendStatus(200);
   } else {
-    console.log("error en la validacion")
+    console.log("error en la validacion");
     res.sendStatus(505);
   }
-
-  console.log("post realizado");
-  res.sendStatus(200);
 });
 app.put("/products", (req, res) => {
   let prop = req.body;

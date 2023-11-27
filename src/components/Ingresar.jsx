@@ -64,14 +64,15 @@ export const loginUserAction = async ({ request }) => {
   };
   axios
     .post("http://localhost:3000/users", submission)
-    .catch((err) => {
-      if (err.response.status == 505)
-        alert("Usuario Invalido, vuelve a ingresar");
-    })
+
     .then((res) => {
       if (res.status == 200) {
         localStorage.setItem("usuario", submission.username);
       }
     })
-      return redirect("/")
+    .catch((err) => {
+      if (err.response.status == 505)
+        alert("Usuario Invalido, vuelve a ingresar");
+    });
+  return redirect("/");
 };

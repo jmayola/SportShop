@@ -1,6 +1,6 @@
 import axios from "axios";
 import ProductsCard from "./ProductsCard";
-import { Form, redirect, useParams } from "react-router-dom";
+import { Form, Navigate, redirect, useLoaderData, useParams } from "react-router-dom";
 export default function UpdateProduct(children) {
   const Data = children.values.Data;
   const { id } = useParams();

@@ -3,16 +3,20 @@ import axios from "axios";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductsCard from "../components/Products/ProductsCard";
+import { Link, useLoaderData } from "react-router-dom";
 
 function Products() {
-  const [Data, setData] = useState([]);
-  useEffect(() => {
-    axios.get("http://localhost:3000").then((res) => {
-      let data = res.data;
-      return setData(data);
-    });
-  }, [Data]);
-  if (Data == "") {
+  const [Data, setFetch] = useState([])
+  const {data} = useLoaderData()
+  useEffect(()=>{
+    async function GetData(){
+      return setFetch(data)
+    }
+    if(Data == ""){
+      GetData()
+    }
+  },[Data, data])
+  if (Data == []) {
     return (
       <>
         <Header></Header>

@@ -28,6 +28,15 @@ function ProductosAdmin() {
     });
     setModObj(arr);
   }
+  let index = Products.findIndex((val, i) => {
+    if (val.id_products == ModObj[0].id_products) {
+      return i;
+    }
+    else{
+      return 0
+    }
+  });
+
   return (
     <>
       <Header></Header>
@@ -39,7 +48,14 @@ function ProductosAdmin() {
               autoFocus
               onChange={(e) => {
                 FindProdcuts(e.target.value);
+                console.log(document.getElementById("selectProd").value)
+
                 document.getElementById("selectProd").style.display = "block";
+                if(document.getElementById("selectProd").value == undefined){
+                  console.log("no hay datos")
+                  document.getElementById("selectProd").value = "No Hay Datos"
+                }
+              
               }}
               className="block w-1/2 rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               placeholder="Buscar producto"
@@ -138,5 +154,4 @@ function ProductosAdmin() {
     </>
   );
 }
-
 export default ProductosAdmin;

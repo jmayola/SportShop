@@ -7,11 +7,14 @@ import axios from "axios";
 function Header() {
   const [User, setUser] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3000/users").then((res) => {
+    async function getData(){
+      await axios.get("http://localhost:3000/users").then((res) => {
       let data = res.data;
       return setUser(data);
     });
-  }, [User]);
+    }
+    getData()
+  }, []);
   let setus = User.filter((val) => {
     if (val.username == localStorage.getItem("usuario")) {
       return true;

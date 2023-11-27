@@ -23,25 +23,28 @@ function HeaderCliente(data) {
             </li>
           </Link>
           <a href={`/#aboutus`}>
-            <li className="link-animation link-typography text-sm font-inter">
+            <li className="link-animation link-typography font-inter">
               Nosotros
             </li>
           </a>
           <Link to={`https:/github.com/jmayola/sportshop`}>
-            <li className="link-animation link-typography text-sm font-inter">
+            <li className="link-animation link-typography font-inter">
               Github
             </li>
           </Link>
-          <button className="text-white mx-2 rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
+          <button
+            onClick={() => {
+              localStorage.removeItem("usuario");
+              location.reload()
+            }}
+            className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-red-500 px-2 hover:bg-red-700 active:bg-neutral-900"
+          >
+            Salir
+          </button>
+          <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
             <Link to={`/admin`}>
               <li className=" mx-3 ">{setus[0].username}</li>
             </Link>
-          </button>
-          <button
-            onClick={() => localStorage.removeItem("usuario")}
-            className="text-white rounded-xl text-sm   py-2 px-5 no-underline font-medium  bg-red-600 hover:bg-red-700 active:bg-neutral-900"
-          >
-            Salir
           </button>
         </nav>
       </header>
