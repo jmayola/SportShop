@@ -28,14 +28,6 @@ function ProductosAdmin() {
     });
     setModObj(arr);
   }
-  let index = Products.findIndex((val, i) => {
-    if (val.id_products == ModObj[0].id_products) {
-      return i;
-    } else {
-      return 0;
-    }
-  });
-
   return (
     <>
       <Header></Header>
@@ -140,7 +132,16 @@ function ProductosAdmin() {
               Borrar Producto
             </Link>
             <Link
-              to={"/products/update/" + (ModObj[0].id_products - 1)}
+              to={
+                "/products/update/" +
+                Products.findIndex((val, index) => {
+                  if (val.id_products == ModObj[0].id_products) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                })
+              }
               className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Modificar
