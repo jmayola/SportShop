@@ -108,7 +108,10 @@ function Proveedores() {
             <Link className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Insertar
             </Link>
-            <Link className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            <Link
+              onClick={() => confirm("Desea eliminar el proveedor?")}
+              className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+            >
               Borrar Proveedor
             </Link>
             <Link className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
