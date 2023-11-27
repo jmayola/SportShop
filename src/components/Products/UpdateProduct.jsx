@@ -3,13 +3,13 @@ import ProductsCard from "./ProductsCard";
 import { Form, Navigate, redirect, useLoaderData, useParams } from "react-router-dom";
 export default function UpdateProduct(children) {
   const Data = children.values.Data;
-  const { id } = useParams();
+  const { i } = useParams();
   if (Data.length == 0) {
     return <h1>Esperando Objetos</h1>;
   } else {
     return (
       <>
-        <ProductsCard value={{ Data, id }}></ProductsCard>
+        <ProductsCard value={{ Data, i }}></ProductsCard>
         <Form
           method="PUT"
           action="/products/update/:id"
@@ -21,7 +21,7 @@ export default function UpdateProduct(children) {
           <input
             type="text"
             name="name_products"
-            defaultValue={Data[id].name_products}
+            defaultValue={Data[i].name_products}
             placeholder="Ingrese un Nombre"
             className="p-4 bg-gray-100 border border-gray-300 "
             id=""
@@ -32,7 +32,7 @@ export default function UpdateProduct(children) {
           <textarea
             type="text"
             name="desc_products"
-            defaultValue={Data[id].desc_products}
+            defaultValue={Data[i].desc_products}
             placeholder="Ingrese una descripcion"
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
@@ -44,7 +44,7 @@ export default function UpdateProduct(children) {
           <input
             type="number"
             name="price_products"
-            defaultValue={Data[id].price_products}
+            defaultValue={Data[i].price_products}
             placeholder="Ingrese el Precio"
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
@@ -56,7 +56,7 @@ export default function UpdateProduct(children) {
           <input
             type="number"
             name="stock_products"
-            defaultValue={Data[id].stock_products}
+            defaultValue={Data[i].stock_products}
             placeholder="Ingrese el Stock"
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
@@ -68,7 +68,7 @@ export default function UpdateProduct(children) {
           <input
             type="text"
             name="category_products"
-            defaultValue={Data[id].category_products}
+            defaultValue={Data[i].category_products}
             placeholder="Ingrese una Categoria"
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
@@ -79,7 +79,7 @@ export default function UpdateProduct(children) {
           <input
             type="text"
             name="provider_products"
-            defaultValue={Data[id].category_products}
+            defaultValue={Data[i].category_products}
             placeholder="Ingrese una Marca"
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
@@ -90,7 +90,7 @@ export default function UpdateProduct(children) {
           <input
             type="text"
             name="mark_products"
-            defaultValue={Data[id].category_products}
+            defaultValue={Data[i].category_products}
             placeholder="Ingrese una Marca"
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
@@ -108,7 +108,7 @@ export default function UpdateProduct(children) {
           <input
             type="hidden"
             name="id_products"
-            value={Data[id].id_products}
+            value={Data[i].id_products}
           />
           <button className="grid col-end-3 col-start-1 p-5 bg-red-600 text-white ">
             Modificar

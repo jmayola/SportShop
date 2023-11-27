@@ -3,7 +3,6 @@ import Home from "./routes/Home";
 import Inserts from "./routes/Inserts";
 import Products from "./routes/Products";
 import Update from "./routes/Update";
-import Delete, { DeleteProductAction } from "./routes/Delete";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
 import Ingresar, { loginUserAction } from "./components/Ingresar";
@@ -88,12 +87,6 @@ function App() {
       element: <Registrar></Registrar>,
       action: registerUserAction,
       errorElement: <ErrorPage></ErrorPage>,
-    },
-    {
-      path: "/products/delete/",
-      element: <Delete></Delete>,
-      errorElement: <ErrorPage></ErrorPage>,
-      action: DeleteProductAction,
     },
     {
       path: "/Empleados",
