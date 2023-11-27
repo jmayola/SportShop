@@ -1,7 +1,7 @@
 import Header from "../Header";
 import Footer from "../Footer";
 import axios from "axios";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 function Usuarios() {
   const [User, setUser] = useState([]);
   const [Search, SetSearch] = useState([]);
@@ -30,7 +30,7 @@ function Usuarios() {
   }
   return (
     <>
-       <Header></Header>
+      <Header></Header>
       <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
           <div className="flex justify-center gap-5">
@@ -45,7 +45,7 @@ function Usuarios() {
               placeholder="Buscar Usuario"
             />
             <select
-              className="hidden rounded-lg min-w-[300px] text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+              className="hidden rounded-lg min-w-[300px] text-center border border-gray-300 px-2 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               name=""
               onClick={(e) => setValue(e.target.value)}
               id="selectProd"
