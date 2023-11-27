@@ -6,16 +6,16 @@ import ProductsCard from "../components/Products/ProductsCard";
 import { Link, useLoaderData } from "react-router-dom";
 
 function Products() {
-  const [Data, setFetch] = useState([])
-  const {data} = useLoaderData()
-  useEffect(()=>{
-    async function GetData(){
-      return setFetch(data)
+  const [Data, setFetch] = useState([]);
+  const { data } = useLoaderData();
+  useEffect(() => {
+    async function GetData() {
+      return setFetch(data);
     }
-    if(Data == ""){
-      GetData()
+    if (Data == "") {
+      GetData();
     }
-  },[Data, data])
+  }, [Data, data]);
   if (Data == []) {
     return (
       <>
@@ -39,7 +39,13 @@ function Products() {
           </div>
           <section className="grid place-content-center grid-cols-3 m-10 max-md:grid-cols-2 col-start-2 col-end-5 gap-10">
             {Data.map((val, i) => {
-              return <ProductsCard value={{ Data, i }} key={i}></ProductsCard>;
+              return (
+                <>
+                  <Link to={"/products/" + i}>
+                    <ProductsCard value={{ Data, i }} key={i}></ProductsCard>;
+                  </Link>
+                </>
+              );
             })}
           </section>
         </div>
