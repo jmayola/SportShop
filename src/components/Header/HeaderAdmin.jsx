@@ -34,7 +34,7 @@ function HeaderAdmin(data) {
             </li>
           </Link>
           <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 gap-4 ">
-            <Link to={`/Empleados`}>
+            <Link to={`/User`}>
               <li className=" mx-3 ">{setus[0].username}</li>
             </Link>
           </button>

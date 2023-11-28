@@ -74,7 +74,7 @@ export default function InsertProduct() {
               className="block w-full rounded-lg border border-gray-300 px-3 py-2 p-5 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               id=""
             />
-            <button className="p-5 bg-red-600 rounded-md font-medium text-white">
+            <button className="p-5 bg-black rounded-md font-medium text-white">
               Ingresar
             </button>
           </Form>

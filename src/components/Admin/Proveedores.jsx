@@ -105,16 +105,16 @@ function Proveedores() {
       <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
           <div className="flex justify-center gap-5">
-            <Link className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            <Link className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Insertar
             </Link>
             <Link
               onClick={() => confirm("Desea eliminar el proveedor?")}
-              className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Borrar Proveedor
             </Link>
-            <Link className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            <Link className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Modificar
             </Link>
           </div>

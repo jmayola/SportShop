@@ -129,19 +129,19 @@ function ProductosAdmin() {
           <div className="flex justify-center gap-5">
             <Link
               to={"/products/Insert"}
-              className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Insertar
             </Link>
             <Link
               onClick={() => confirm("desea eliminar el producto?")}
-              className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Borrar Producto
             </Link>
             <Link
               to={"/products/update/" + (ModObj[0].id_products - 1)}
-              className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Modificar
             </Link>

@@ -1,6 +1,12 @@
 import axios from "axios";
 import ProductsCard from "./ProductsCard";
-import { Form, Navigate, redirect, useLoaderData, useParams } from "react-router-dom";
+import {
+  Form,
+  Navigate,
+  redirect,
+  useLoaderData,
+  useParams,
+} from "react-router-dom";
 export default function UpdateProduct(children) {
   const Data = children.values.Data;
   const { i } = useParams();
@@ -105,12 +111,8 @@ export default function UpdateProduct(children) {
             className="p-4 bg-gray-100 border border-gray-300"
             id=""
           />
-          <input
-            type="hidden"
-            name="id_products"
-            value={Data[i].id_products}
-          />
-          <button className="grid col-end-3 col-start-1 p-5 bg-red-600 text-white ">
+          <input type="hidden" name="id_products" value={Data[i].id_products} />
+          <button className="grid col-end-3 col-start-1 p-5 bg-black text-white ">
             Modificar
           </button>
         </Form>

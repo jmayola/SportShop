@@ -50,7 +50,7 @@ function Product() {
               defaultValue={0}
               className="rounded-md w-1/3 text-center text-4xl border border-gray-200"
             />
-            <button className="p-5 bg-red-600  rounded-md font-medium text-white">
+            <button className="p-5 bg-black  rounded-md font-medium text-white">
               Comprar
             </button>
           </div>
