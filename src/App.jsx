@@ -12,7 +12,6 @@ import Usuarios from "./components/Admin/Usuarios";
 import Proveedores from "./components/Admin/Proveedores";
 import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import User from "./routes/User";
-import { insertProductAction } from "./components/Products/InsertProduct";
 import {
   createBrowserRouter,
   redirect,

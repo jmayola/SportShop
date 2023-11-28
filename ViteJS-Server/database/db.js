@@ -49,6 +49,15 @@ const db2 = new sqlite.Database(
 //     console.log("Tabla Creada")
 //    }
 //  })
+//db2.run("CREATE TABLE cart(id_cart INT AUTO_INCREMENT NOT NULL PRIMARY KEY, username,  id_products, cant )", (err)=>{
+//    if(err){
+//     console.log("Se ha detectado un Error" + err.message)
+//    }
+//    else{
+//     console.log("Tabla Creada")
+//    }
+//  })
+//
 function SELECTPROVIDER() {
   sql = `SELECT * FROM providers`;
   db.all(sql, [], (err, rows) => {
@@ -258,7 +267,7 @@ function DROP_TABLE(table) {
     console.log(res.message);
   });
 }
-//DROP_TABLE("products")
+//DROP_TABLE("cart")
 //CREATE_TABLE()
 SELECT();
 app.post("/products", (req, res) => {
@@ -317,5 +326,22 @@ app.delete("/products", (req, res) => {
   console.log("Delete Realizado, se ha eliminado la ID: " + prop.id_products);
   res.sendStatus(200);
 });
+app.post("/cart", (req,res)=>{
+  const prop = req.body
+  INSERTCART(
+   prop.username,
+   prop.id_products,
+   prop.cant
+ )
+ res.sendStatus(200)
+ console.log("respuesta valida");
+})
+async function INSERTCART(username, prod, cant) {
+  sql = `INSERT INTO cart(username,  id_products, cant ) VALUES(?,?,?)`;
+  db.run(sql, [username,prod,cant], (err) => {
+    if (err) return console.error(err.message);
+  });
+}
+
 console.log("base de datos conectada.");
 app.listen(3000);
