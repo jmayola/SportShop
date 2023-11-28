@@ -39,7 +39,10 @@ function HeaderAdmin(data) {
             </Link>
           </button>
           <button
-            onClick={() => localStorage.removeItem("usuario")}
+            onClick={() => {
+              localStorage.removeItem("usuario");
+              location.reload();
+            }}
             className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-red-500 px-2 hover:bg-red-700 active:bg-neutral-900 gap-4"
           >
             Salir

@@ -5,7 +5,7 @@
   "type": "commonjs",
   "main": "database/db.js",
   "scripts": {
-    "start": "nodemon -e db"
+    "start": "nodemon -e db -L"
   },
   "author": "",
   "license": "ISC",
