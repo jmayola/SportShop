@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 function Product() {
   const [Data, setData] = useState([]);
+  const [Cant, setCant] = useState()
   const { id } = useParams();
   useEffect(() => {
     setInterval(()=>{
@@ -18,6 +19,10 @@ function Product() {
       }
     })
   }, [Data]);
+  function PostData(){
+    axios.post("http://localhost:3000/cart", {username: localStorage.getItem("usuario"), id_products: Data[id].id_products, cant: Cant })
+
+  }
   if (Data == "") {
     return <h1>Esperando Datos</h1>;
   } else {
@@ -25,8 +30,7 @@ function Product() {
     return (
       <>
         <Header></Header>
-        <div className="grid grid-cols-2 m-auto justify-items-end">
-        <div className="grid grid-cols-2 m-auto w-full h-2/3 justify-around border max-xl:grid-cols-1  border-gray-300">
+        <div className="grid grid-cols-2 m-auto  w-2/3 h-2/3 justify-around border max-xl:grid-cols-1  border-gray-300">
           <div className=" flex justify-center font-black w-fit m-auto">
             <img
               src={"../" + Data[id].image_products}
@@ -49,17 +53,15 @@ function Product() {
             </div>
             <input
               type="number"
-              readOnly
               defaultValue={0}
+              onChange={(e)=>setCant(e.target.value)}
               className="rounded-md w-1/3 text-center text-4xl border border-gray-200"
             />
-            <button className="p-5 bg-black  rounded-md font-medium text-white">
+            <button  className="p-5 bg-red-600  rounded-md font-medium text-white">
               Comprar
             </button>
           </div>
         </div>        
-        <div className="w-1/3 h-screen top-0 right-0 bg-slate-400"></div>
-        </div>
         <Footer></Footer>
       </>
     );
