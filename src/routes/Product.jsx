@@ -7,14 +7,16 @@ function Product() {
   const [Data, setData] = useState([]);
   const { id } = useParams();
   useEffect(() => {
-    async function getdata() {
-      axios.get("http://localhost:3000/").then((res) => {
-        setData(res.data);
-      });
-    }
-    if (Data == "") {
-      getdata();
-    }
+    setInterval(()=>{
+      async function getdata() {
+        axios.get("http://localhost:3000/").then((res) => {
+          setData(res.data);
+        });
+      }
+      if (Data == "") {
+        getdata();
+      }
+    })
   }, [Data]);
   if (Data == "") {
     return <h1>Esperando Datos</h1>;
@@ -23,7 +25,8 @@ function Product() {
     return (
       <>
         <Header></Header>
-        <div className="grid grid-cols-2 m-auto w-2/3 h-2/3 border max-xl:grid-cols-1  border-gray-300">
+        <div className="grid grid-cols-2 m-auto justify-items-end">
+        <div className="grid grid-cols-2 m-auto w-full h-2/3 justify-around border max-xl:grid-cols-1  border-gray-300">
           <div className=" flex justify-center font-black w-fit m-auto">
             <img
               src={"../" + Data[id].image_products}
@@ -54,6 +57,8 @@ function Product() {
               Comprar
             </button>
           </div>
+        </div>        
+        <div className="w-1/3 h-screen top-0 right-0 bg-slate-400"></div>
         </div>
         <Footer></Footer>
       </>

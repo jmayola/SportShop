@@ -4,10 +4,11 @@ const express = require("express");
 const cors = require("cors");
 const sqlite3 = require("sqlite3");
 const sqlite = sqlite3.verbose();
+const nodemon = require("nodemon")
 let sql;
 var validRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-let validUserRegex = /^[ñÑa-zñÑA-ZñÑ0-9]*$/;
+let validUserRegex = /^[ñÑa-zñÑ A-ZñÑ0-9]*$/;
 let validFullnameRegex = /^[ñÑa-zñÑA-ZñÑ]+ [ñÑa-zñÑA-ZñÑ]\w+$/;
 const app = express();
 app.use(express.json());
@@ -133,10 +134,14 @@ function INSERTEMPLOYEE(username, fullname, address, dni, worksector) {
 
 function INSERTUSER(username, password, fullname, email, tipo) {
   sql = `INSERT INTO users(username, password, fullname, email,tipo) VALUES(?,?,?,?,?)`;
-  return db2.run(sql, [username, password, fullname, email, tipo], (err,asd)=>{
-    console.log("error detectado"+err)
-    console.log(asd)
-  })
+  return db2.run(
+    sql,
+    [username, password, fullname, email, tipo],
+    (err, asd) => {
+      console.log("error detectado" + err);
+      console.log(asd);
+    }
+  );
 }
 function SELECTUSER() {
   sql = `SELECT * FROM users`;
@@ -153,11 +158,11 @@ function SELECTUSER() {
       let prop = req.body;
       let username = prop.username;
       let password = prop.password;
-      console.log(username)
-      console.log(password)
+      console.log(username);
+      console.log(password);
       arr.forEach((val, i) => {
         if (username == arr[i].username && password == arr[i].password) {
-          res.header("Autentication","true")
+          res.header("Autentication", "true");
           console.log("resultado valido");
           res.sendStatus(200);
         }
@@ -188,10 +193,10 @@ function SELECTUSER() {
         try {
           INSERTUSER(username, password, fullname, email, "cliente");
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       } else {
-        console.log("ingreso invalido")
+        console.log("ingreso invalido");
       }
       //recordar bajar el mail a 100 y le fullname tambiens
     });
@@ -205,11 +210,10 @@ SELECTUSER();
 //                DATABASE PRODUCTS                     //
 //////////////////////////////////////////////////////////
 
-function INSERT(name, desc, price, stock, cat, img, prov, mark) {
+async function INSERT(name, desc, price, stock, cat, img, prov, mark) {
   sql = `INSERT INTO products(name_products, desc_products, price_products, stock_products, category_products, image_products, provider_products, mark_products) VALUES(?,?,?,?,?,?,?,?)`;
   db.run(sql, [name, desc, price, stock, cat, img, prov, mark], (err) => {
     if (err) return console.error(err.message);
-    else console.log("ingreso exitoso");
   });
 }
 function PUT(name, desc, price, stock, cat, img, id, prov, mark) {
@@ -259,16 +263,13 @@ function DROP_TABLE(table) {
 SELECT();
 app.post("/products", (req, res) => {
   let prop = req.body;
-  console.log(
-    prop.name_products.length < 49 && prop.name_products.match(validUserRegex)
-  );
   if (
-    prop.name_products.length < 49 &&
+    prop.name_products.length < 75 &&
     prop.name_products.match(validUserRegex) &&
     prop.desc_products.length < 250 &&
     prop.price_products.match(/^[0-9]*$/) &&
     prop.price_products.length < 10 &&
-    prop.stock_products.length < 5 &&
+    prop.stock_products.length < 10 &&
     prop.stock_products.match(/^[0-9]*$/) &&
     prop.category_products.length < 254 &&
     prop.category_products.match(validUserRegex) &&
@@ -277,18 +278,18 @@ app.post("/products", (req, res) => {
     prop.mark_products.match(validUserRegex) &&
     prop.mark_products.length < 100
   ) {
-    console.log("respuesta valida");
-    INSERT(
-      prop.name_products,
-      prop.desc_products,
-      prop.price_products,
-      prop.stock_products,
-      prop.category_products,
-      prop.image_products,
-      prop.provider_products,
-      prop.mark_products
-    );
-    res.sendStatus(200);
+      console.log("respuesta valida");
+       INSERT(
+        prop.name_products,
+        prop.desc_products,
+        prop.price_products,
+        prop.stock_products,
+        prop.category_products,
+        prop.image_products,
+        prop.provider_products,
+        prop.mark_products
+      )
+      res.sendStatus(200)
   } else {
     console.log("error en la validacion");
     res.sendStatus(505);

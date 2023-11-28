@@ -11,8 +11,11 @@ import Empleados from "./components/Admin/Empleados";
 import Usuarios from "./components/Admin/Usuarios";
 import Proveedores from "./components/Admin/Proveedores";
 import ProductosAdmin from "./components/Admin/ProductosAdmin";
+<<<<<<< HEAD
 import User from "./routes/User";
 import { insertProductAction } from "./components/Products/InsertProduct";
+=======
+>>>>>>> 6afd9be (no me acuerdo que hice)
 import {
   createBrowserRouter,
   redirect,
@@ -20,6 +23,7 @@ import {
 } from "react-router-dom";
 import Product from "./routes/Product";
 import axios from "axios";
+import Loading from "./routes/Loading";
 
 function App() {
   // creamos enturador
@@ -54,7 +58,31 @@ function App() {
     {
       path: "/products/insert",
       element: <Inserts></Inserts>,
-      action: insertProductAction,
+      action: async ({ request }) => {
+        const data = await request.formData();
+        const submission = {
+          name_products: data.get("name_products"),
+          desc_products: data.get("desc_products"),
+          price_products: data.get("price_products"),
+          stock_products: data.get("stock_products"),
+          category_products: data.get("category_products"),
+          image_products: data.get("image_products"),
+          provider_products: data.get("provider_products"),
+          mark_products: data.get("mark_products"),
+        };
+        axios
+          .post("http://localhost:3000/products", submission)
+          .catch((err) => {
+            if (err.response.status == 505)
+              alert("Ingreso Invalido, revisa los caracteres que ingresas.");
+          })
+          .then((res) => {
+            if (res.status == 200) {
+              console.log("Ingreso Exitoso");
+            }
+          });
+        return redirect("/");
+      },
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
@@ -111,9 +139,13 @@ function App() {
     {
       path: "/ProductosAdmin",
       element: <ProductosAdmin></ProductosAdmin>,
+      loader: async () => {
+        return axios.get("http://localhost:3000");
+      },
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
+<<<<<<< HEAD
       path: "/ProductosAdmin",
       element: <ProductosAdmin></ProductosAdmin>,
       errorElement: <ErrorPage></ErrorPage>,
@@ -122,6 +154,14 @@ function App() {
       path: "/User",
       element: <User></User>,
       errorElement: <ErrorPage></ErrorPage>,
+=======
+      path: "/Loading",
+      loader: async ({ res }) => {
+        var data = await axios.get("http://localhost:3000");
+        return redirect("/");
+      },
+      element: <Loading></Loading>,
+>>>>>>> 6afd9be (no me acuerdo que hice)
     },
   ]);
   return <RouterProvider router={router} />;

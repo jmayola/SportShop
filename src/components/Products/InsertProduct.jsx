@@ -84,29 +84,3 @@ export default function InsertProduct() {
     </>
   );
 }
-export const insertProductAction = async ({ request }) => {
-  const data = await request.formData();
-  const submission = {
-    name_products: data.get("name_products"),
-    desc_products: data.get("desc_products"),
-    price_products: data.get("price_products"),
-    stock_products: data.get("stock_products"),
-    category_products: data.get("category_products"),
-    image_products: data.get("image_products"),
-    provider_products: data.get("provider_products"),
-    mark_products: data.get("mark_products"),
-  };
-  console.log(submission);
-  axios
-    .post("http://localhost:3000/products", submission)
-    .catch((err) => {
-      if (err.response.status == 505)
-        alert("Ingreso Invalido, revisa los caracteres que ingresas.");
-    })
-    .then((res) => {
-      if (res.status == 200) {
-        console.log("Ingreso Exitoso");
-      }
-    });
-  return redirect("/products");
-};

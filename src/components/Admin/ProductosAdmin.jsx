@@ -2,17 +2,20 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Await, Link, redirect, useLoaderData } from "react-router-dom";
 function ProductosAdmin() {
   const [Products, setProducts] = useState([]);
   const [Search, SetSearch] = useState([]);
   const [ModObj, setModObj] = useState([{}]);
+  const { data } = useLoaderData();
   useEffect(() => {
-    axios.get("http://localhost:3000/").then((res) => {
-      let data = res.data;
-      return setProducts(data);
-    });
-  }, [Products]);
+    async () => {
+      console.log(Products);
+    };
+  }, [data]);
+  if(Products == ""){
+    setProducts(data)
+  }
   function FindProdcuts(e) {
     let arr = [];
     Products.map((val, i) => {
@@ -56,6 +59,7 @@ function ProductosAdmin() {
               onClick={(e) => setValue(e.target.value)}
               id="selectProd"
             >
+              <Await>
               {Search.map((val, i) => {
                 return (
                   <option value={val} key={i}>
@@ -63,6 +67,7 @@ function ProductosAdmin() {
                   </option>
                 );
               })}
+              </Await>
             </select>
           </div>
           <div className="flex justify-between w-full  px-10">
@@ -125,12 +130,19 @@ function ProductosAdmin() {
             >
               Insertar
             </Link>
-            <Link
-              onClick={() => confirm("desea eliminar el producto?")}
+            <button
               className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+              onClick={() => {
+                if (confirm("desea eliminar el producto?")) {
+                  axios.delete("http://localhost:3000/products", {
+                    data: { id_products: ModObj[0].id_products },
+                  })
+                  return axios.get("http://localhost:3000").then(async ()=> redirect("/products"))
+                }
+              }}
             >
               Borrar Producto
-            </Link>
+            </button>
             <Link
               to={
                 "/products/update/" +
