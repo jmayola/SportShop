@@ -34,7 +34,7 @@ function Empleados() {
     });
   }
   function setValue(e) {
-    let arr = User.filter((val, i) => {
+    let arr = User.filter((val) => {
       if (e == val.username) return true;
     });
     setModObj(arr);
@@ -77,12 +77,23 @@ function Empleados() {
             </div>
             <div method="post" action="" className="w-full py-10">
               <div className="flex place-content-center place-items-center flex-col ">
+              <div className="w-full">
+                  <h2 className="flex justify-start px-2 ">
+                    Usuario
+                  </h2>
+                  <input
+                    name="username"
+                    type="text"
+                    defaultValue={ModObj[0].username}
+                    className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                  />
+                </div>
                 <div className="w-full">
                   <h2 className="flex justify-start px-2 ">
                     Nombre y Apellido
                   </h2>
                   <input
-                    name="usuario"
+                    name="fullname"
                     type="text"
                     defaultValue={ModObj[0].fullname}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
@@ -91,7 +102,7 @@ function Empleados() {
                 <div className="w-full">
                   <h2 className="flex justify-start px-2">Domicilio</h2>
                   <input
-                    name="usuario"
+                    name="address"
                     type="text"
                     defaultValue={ModObj[0].address}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
@@ -100,7 +111,7 @@ function Empleados() {
                 <div className="w-full">
                   <h2 className="flex justify-start px-2">DNI</h2>
                   <input
-                    name="usuario"
+                    name="dni"
                     type="text"
                     defaultValue={ModObj[0].dni}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
@@ -109,7 +120,7 @@ function Empleados() {
                 <div className="w-full">
                   <h2 className="flex justify-start px-2">Sector de Trabajo</h2>
                   <input
-                    name="usuario"
+                    name="worksector"
                     type="text"
                     defaultValue={ModObj[0].worksector}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
@@ -123,7 +134,7 @@ function Empleados() {
       <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
           <div className="flex justify-center gap-5">
-            <Link className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            <Link to={"/Empleados/insert"} className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Insertar
             </Link>
             <Link

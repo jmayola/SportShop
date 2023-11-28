@@ -135,5 +135,5 @@ export const updateProductAction = async ({ request }) => {
   };
   console.log(submission);
   axios.put("http://localhost:3000/products", submission);
-  return redirect("/products");
+  return redirect("/ProductosAdmin");
 };
