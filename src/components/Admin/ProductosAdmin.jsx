@@ -131,7 +131,7 @@ function ProductosAdmin() {
               Insertar
             </Link>
             <button
-              className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
               onClick={() => {
                 if (confirm("desea eliminar el producto?")) {
                   axios.delete("http://localhost:3000/products", {
@@ -156,7 +156,7 @@ function ProductosAdmin() {
                   }
                 })
               }
-              className="p-5 bg-red-600 border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Modificar
             </Link>
