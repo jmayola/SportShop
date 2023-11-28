@@ -4,12 +4,12 @@ const express = require("express");
 const cors = require("cors");
 const sqlite3 = require("sqlite3");
 const sqlite = sqlite3.verbose();
-const nodemon = require("nodemon")
 let sql;
 var validRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 let validUserRegex = /^[ñÑa-zñÑ A-ZñÑ0-9]*$/;
 let validFullnameRegex = /^[ñÑa-zñÑA-ZñÑ]+ [ñÑa-zñÑA-ZñÑ]\w+$/;
+let validNum = /^[0-9]*$/;
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -49,15 +49,7 @@ const db2 = new sqlite.Database(
 //     console.log("Tabla Creada")
 //    }
 //  })
-//db2.run("CREATE TABLE cart(id_cart INT AUTO_INCREMENT NOT NULL PRIMARY KEY, username,  id_products, cant )", (err)=>{
-//    if(err){
-//     console.log("Se ha detectado un Error" + err.message)
-//    }
-//    else{
-//     console.log("Tabla Creada")
-//    }
-//  })
-//
+
 function SELECTPROVIDER() {
   sql = `SELECT * FROM providers`;
   db.all(sql, [], (err, rows) => {
@@ -110,23 +102,43 @@ function SELECTEMPLOYEE() {
       res.json(arr); // mostramos el array de objetos para visualizarlo
     });
     app.post("/employees", (req, res) => {
-      let prop = req.body;
-      let username = prop.username;
-      let password = prop.password;
-      arr.forEach((val, i) => {
-        console.log(arr);
-        console.log(arr[i].username);
-        console.log(arr[i].password);
-        if (username == arr[i].username && password == arr[i].password) {
-          console.log("resultado valido");
-          return res.sendStatus(200);
+      const prop = req.body;
+      console.log(prop)
+      let username = prop.username.toString();
+      let fullname = prop.fullname.toString();
+      let address = prop.address.toString();
+      let dni = prop.dni
+      let worksector = prop.worksector.toString();
+      if (
+        username == "" ||
+        fullname == "" ||
+        address == "" ||
+        dni == "" || worksector == ""){
+          console.log("error")
         }
-      });
-      res.sendStatus(505);
+      else if( 
+          username.length < 50 &&
+          username.match(validUserRegex) &&
+          fullname.length < 100 &&
+          fullname.match(validUserRegex) &&
+          address.length < 100 &&
+          address.match(validUserRegex) &&
+          dni.match(validNum) &&
+          worksector.length < 13 &&
+          worksector.match(validUserRegex)) {
+        INSERTEMPLOYEE(
+          prop.username,
+          prop.fullname,
+          prop.address,
+          prop.dni,
+          prop.worksector
+        );
+      }
     });
   });
 }
 SELECTEMPLOYEE();
+
 function INSERTEMPLOYEE(username, fullname, address, dni, worksector) {
   sql = `INSERT INTO employees(username, fullname, address, dni,worksector) VALUES(?,?,?,?,?)`;
   db2.run(sql, [username, fullname, address, dni, worksector], (err) => {
@@ -287,18 +299,18 @@ app.post("/products", (req, res) => {
     prop.mark_products.match(validUserRegex) &&
     prop.mark_products.length < 100
   ) {
-      console.log("respuesta valida");
-       INSERT(
-        prop.name_products,
-        prop.desc_products,
-        prop.price_products,
-        prop.stock_products,
-        prop.category_products,
-        prop.image_products,
-        prop.provider_products,
-        prop.mark_products
-      )
-      res.sendStatus(200)
+    console.log("respuesta valida");
+    INSERT(
+      prop.name_products,
+      prop.desc_products,
+      prop.price_products,
+      prop.stock_products,
+      prop.category_products,
+      prop.image_products,
+      prop.provider_products,
+      prop.mark_products
+    );
+    res.sendStatus(200);
   } else {
     console.log("error en la validacion");
     res.sendStatus(505);
@@ -326,22 +338,50 @@ app.delete("/products", (req, res) => {
   console.log("Delete Realizado, se ha eliminado la ID: " + prop.id_products);
   res.sendStatus(200);
 });
-app.post("/cart", (req,res)=>{
-  const prop = req.body
-  INSERTCART(
-   prop.username,
-   prop.id_products,
-   prop.cant
- )
- res.sendStatus(200)
- console.log("respuesta valida");
-})
+app.post("/cart", (req, res) => {
+  const prop = req.body;
+  console.log(prop);
+  if (
+    prop.username == undefined ||
+    prop.id_products == undefined ||
+    prop.cant == undefined
+  ) {
+    res.sendStatus(405);
+  } else {
+    INSERTCART(prop.username, prop.id_products, prop.cant);
+    res.sendStatus(200);
+    console.log("respuesta valida");
+  }
+});
+//db2.run("CREATE TABLE cart(id_cart INTEGER PRIMARY KEY AUTOINCREMENT, username,  id_products, cant )", (err)=>{
+//    if(err){
+//     console.log("Se ha detectado un Error" + err.message)
+//    }
+//    else{
+//     console.log("Tabla Creada")
+//    }
+//  })
+
 async function INSERTCART(username, prod, cant) {
   sql = `INSERT INTO cart(username,  id_products, cant ) VALUES(?,?,?)`;
-  db.run(sql, [username,prod,cant], (err) => {
+  db.run(sql, [username, prod, cant], (err) => {
     if (err) return console.error(err.message);
   });
 }
-
+SELECTCART();
+function SELECTCART() {
+  sql = `SELECT * FROM cart`;
+  db.all(sql, [], (err, rows) => {
+    if (err) console.error(err.message);
+    let arr = [];
+    rows.forEach((row) => {
+      arr.push(row); //añadimos a un array
+    });
+    app.get("/cart", (req, res) => {
+      res.json(arr); // mostramos el array de objetos para visualizarlo
+    });
+    console.log("datos cargados en el puerto 3000");
+  });
+}
 console.log("base de datos conectada.");
 app.listen(3000);

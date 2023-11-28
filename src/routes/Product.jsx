@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import axios from "axios";
 function Product() {
   const [Data, setData] = useState([]);
@@ -19,12 +19,9 @@ function Product() {
       }
     });
   }, [Data]);
-  function PostData() {
-    axios.post("http://localhost:3000/cart", {
-      username: localStorage.getItem("usuario"),
-      id_products: Data[id].id_products,
-      cant: Cant,
-    });
+  async function PostData(){
+    await axios.post("http://localhost:3000/cart", {username: localStorage.getItem("usuario"), id_products: Data[id].id_products, cant: Cant })
+    return redirect("/")
   }
   if (Data == "") {
     return <h1>Esperando Datos</h1>;
@@ -60,7 +57,7 @@ function Product() {
               onChange={(e) => setCant(e.target.value)}
               className="rounded-md w-1/3 text-center text-4xl border border-gray-200"
             />
-            <button className="p-5 bg-black  rounded-md font-medium text-white">
+            <button onClick={()=>PostData()}  className="p-5 bg-red-600  rounded-md font-medium text-white">
               Comprar
             </button>
           </div>
