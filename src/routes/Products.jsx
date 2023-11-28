@@ -50,7 +50,9 @@ function Products() {
                 placeholder="sudaj"
                 className="text-white"
               />
-              <label htmlFor="proveedor" className="text-white">Adidas</label>
+              <label htmlFor="proveedor" className="text-white">
+                Adidas
+              </label>
             </div>
           </div>
           <section className="grid place-content-center grid-cols-3 m-10 max-md:grid-cols-2 col-start-2 col-end-5 gap-10">

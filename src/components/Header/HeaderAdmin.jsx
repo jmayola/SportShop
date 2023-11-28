@@ -12,7 +12,7 @@ function HeaderAdmin(data) {
           alt="imagen "
         />
 
-        <nav className="flex flex-row gap-1 font-sans place-items-center  justify-between px-10 max-lg:flex-col">
+        <nav className="flex flex-row gap-1 font-sans place-items-center  justify-between px-10 max-lg:flex-col ">
           <Link to={`/`}>
             <li className="link-animation link-typography text-black text-sm font-inter">
               Inicio
@@ -28,11 +28,15 @@ function HeaderAdmin(data) {
               Nosotros
             </li>
           </a>
-          <Link to={`https:/github.com/jmayola/sportshop`}>
-            <li className="link-animation link-typography font-inter">
-              Github
-            </li>
+          <Link to={`/Cart`} className="px-3 ">
+            <img src="bx-cart.svg" alt="" />
+            <img
+              src="bx-cart-animation.svg"
+              alt=""
+              className="opacity-0 hover:opacity-10"
+            />
           </Link>
+
           <button className="text-white rounded-xl text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 gap-4 ">
             <Link to={`/User`}>
               <li className=" mx-3 ">{setus[0].username}</li>

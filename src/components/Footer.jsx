@@ -14,7 +14,11 @@ function Footer() {
         <div>
           <Link to={`https://www.instagram.com`}>Instagram</Link>
           <h5>Linkein</h5>
-          <h5>Github</h5>
+          <Link to={`https:/github.com/jmayola/sportshop`}>
+            <h4 className="link-animation link-typography font-inter">
+              Github
+            </h4>
+          </Link>
         </div>
         <h4></h4>
       </div>

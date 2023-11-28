@@ -6,7 +6,7 @@ function ProductsCard(children) {
   let index = prop.i;
   return (
     <>
-      <div className="flex flex-row overflow-hidden border border-gray-300 h-full  hover:shadow-2xl duration-500 ">
+      <div className="flex flex-row overflow-hidden border border-gray-300 h-full  hover:shadow-2xl duration-500 rounded-md">
         <div className="flex flex-col justify-around align-middle">
           <img
             src={"/" + Data[index].image_products}

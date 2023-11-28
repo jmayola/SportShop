@@ -12,6 +12,7 @@ import Usuarios from "./components/Admin/Usuarios";
 import Proveedores from "./components/Admin/Proveedores";
 import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import User from "./routes/User";
+import Cart from "./routes/Cart";
 import {
   createBrowserRouter,
   redirect,
@@ -148,6 +149,11 @@ function App() {
     {
       path: "/User",
       element: <User></User>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/Cart",
+      element: <Cart></Cart>,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {

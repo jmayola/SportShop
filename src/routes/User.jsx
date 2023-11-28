@@ -27,11 +27,11 @@ function User() {
       <section className="flex justify-center max-[800px]: m-5 ">
         <form
           action=""
-          className="flex flex-col w-1/2 border border-gray-300 shadow-lg  "
+          className="flex flex-col w-2/5 border border-gray-300 shadow-lg  "
         >
           <div className="flex justify-center py-2 ">
             <img
-              src="/public/about2.png"
+              src="/public/user-circle-solid.png"
               alt="user"
               className="w-1/3 rounded-full aspect-square"
             />
