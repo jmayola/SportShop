@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 function Product() {
   const [Data, setData] = useState([]);
-  const [Cant, setCant] = useState()
+  const [Cant, setCant] = useState();
   const { id } = useParams();
   useEffect(() => {
-    setInterval(()=>{
+    setInterval(() => {
       async function getdata() {
         axios.get("http://localhost:3000/").then((res) => {
           setData(res.data);
@@ -17,11 +17,14 @@ function Product() {
       if (Data == "") {
         getdata();
       }
-    })
+    });
   }, [Data]);
-  function PostData(){
-    axios.post("http://localhost:3000/cart", {username: localStorage.getItem("usuario"), id_products: Data[id].id_products, cant: Cant })
-
+  function PostData() {
+    axios.post("http://localhost:3000/cart", {
+      username: localStorage.getItem("usuario"),
+      id_products: Data[id].id_products,
+      cant: Cant,
+    });
   }
   if (Data == "") {
     return <h1>Esperando Datos</h1>;
@@ -54,14 +57,14 @@ function Product() {
             <input
               type="number"
               defaultValue={0}
-              onChange={(e)=>setCant(e.target.value)}
+              onChange={(e) => setCant(e.target.value)}
               className="rounded-md w-1/3 text-center text-4xl border border-gray-200"
             />
-            <button  className="p-5 bg-red-600  rounded-md font-medium text-white">
+            <button className="p-5 bg-black  rounded-md font-medium text-white">
               Comprar
             </button>
           </div>
-        </div>        
+        </div>
         <Footer></Footer>
       </>
     );
