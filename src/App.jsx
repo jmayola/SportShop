@@ -11,11 +11,8 @@ import Empleados from "./components/Admin/Empleados";
 import Usuarios from "./components/Admin/Usuarios";
 import Proveedores from "./components/Admin/Proveedores";
 import ProductosAdmin from "./components/Admin/ProductosAdmin";
-<<<<<<< HEAD
 import User from "./routes/User";
 import { insertProductAction } from "./components/Products/InsertProduct";
-=======
->>>>>>> 6afd9be (no me acuerdo que hice)
 import {
   createBrowserRouter,
   redirect,
@@ -145,7 +142,6 @@ function App() {
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
-<<<<<<< HEAD
       path: "/ProductosAdmin",
       element: <ProductosAdmin></ProductosAdmin>,
       errorElement: <ErrorPage></ErrorPage>,
@@ -154,14 +150,14 @@ function App() {
       path: "/User",
       element: <User></User>,
       errorElement: <ErrorPage></ErrorPage>,
-=======
+    },
+    {
       path: "/Loading",
       loader: async ({ res }) => {
         var data = await axios.get("http://localhost:3000");
         return redirect("/");
       },
       element: <Loading></Loading>,
->>>>>>> 6afd9be (no me acuerdo que hice)
     },
   ]);
   return <RouterProvider router={router} />;
