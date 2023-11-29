@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { redirect, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 function Product() {
   const [Data, setData] = useState([]);
@@ -20,9 +20,20 @@ function Product() {
     });
   }, [Data]);
   async function PostData(){
-    await axios.post("http://localhost:3000/cart", {username: localStorage.getItem("usuario"), id_products: Data[id].id_products, cant: Cant })
-    return redirect("/")
-  }
+    if(Cant <=  Data[id].stock_products){
+      await axios.post("http://localhost:3000/cart", {username: localStorage.getItem("usuario"), id_products: Data[id].id_products, cant: Cant }).then(()=>{
+        alert("producto añadido al carrito")
+        location.href = "/products"
+        }).catch((err)=>{
+          alert("Ingresa una cantidad a comprar.")
+          alert("Ha ocurrido un error: "+ err)
+        })
+      }
+    else{
+      alert("No hay suficiente Stock")
+    }
+    }
+    
   if (Data == "") {
     return <h1>Esperando Datos</h1>;
   } else {
@@ -57,6 +68,7 @@ function Product() {
               onChange={(e) => setCant(e.target.value)}
               className="rounded-md w-1/3 text-center text-4xl border border-gray-200"
             />
+            <p>{Data[id].stock_products} disponibles</p>
             <button onClick={()=>PostData()}  className="p-5 bg-red-600  rounded-md font-medium text-white">
               Comprar
             </button>

@@ -14,6 +14,7 @@ import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import User from "./routes/User";
 import Cart from "./routes/Cart";
 import EmployeeInsert, {actionEmployeesInsert} from "./components/Admin/Employees/Insert"
+import InsertProveedor, {actionProvidersInsert} from "./components/Admin/Proveedores/InsertProovedor"; 
 import {
   createBrowserRouter,
   redirect,
@@ -142,6 +143,12 @@ function App() {
     {
       path: "/Proveedores",
       element: <Proveedores></Proveedores>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
+      path: "/Proveedores/insert",
+      element: <InsertProveedor></InsertProveedor>,
+      action: actionProvidersInsert,
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
