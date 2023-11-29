@@ -1,54 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Form, redirect } from "react-router-dom";
 import Header from "../../Header";
 import Footer from "../../Footer";
-export default function InsertProduct() {
+export default function InsertProveedor() {
   return (
     <>
       <Header></Header>
       <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
           <h1 className="text-center p-2 font-Inner text-2xl m-5">
-            Ingreso De Productos
+            Ingreso De Proveedores
           </h1>
           <Form
             method="POST"
             className="grid grid-cols-3 gap-5"
-            action="/Empleados/insert"
+            action="/Proveedores/insert"
           >
             <input
               type="text"
-              name="username"
-              placeholder="Ingrese un usuario"
+              name="provider"
+              placeholder="Ingrese el Proveedor"
               className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               id=""
             />
             <input
               type="text"
-              name="fullname"
-              placeholder="Ingrese el Nombre Completo"
+              name="webpage"
+              placeholder="Ingrese la Pagina Web"
               className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               id=""
             />
             <input
               type="text"
               name="address"
-              placeholder="Ingrese el Domicilio"
+              placeholder="Ingrese la Direccion"
               className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               id=""
             />
             <input
-              type="text"
-              name="dni"
-              placeholder="Ingrese el DNI"
+              type="tel"
+              name="telephone"
+              placeholder="Ingrese el Telefono"
               className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               id=""
             />
             <input
-              type="text"
-              name="worksector"
-              placeholder="Ingrese el Sector de Trabajo"
+              type="email"
+              name="email"
+              placeholder="Ingrese el Email"
               className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               id=""
             />
@@ -62,15 +62,21 @@ export default function InsertProduct() {
     </>
   );
 }
-export const actionEmployeesInsert = async ({ request }) => {
+export const actionProvidersInsert = async ({ request }) => {
     const data = await request.formData();
     const submission = {
-      username: data.get("username"),
-      address: data.get("address"),
-      dni: data.get("dni"),
-      fullname: data.get("fullname"),
-      worksector: data.get("worksector")
+        provider: data.get("provider"),
+        webpage: data.get("webpage"),
+        address: data.get("address"),
+        telephone: data.get("telephone"),
+        email: data.get("email")
     };
-    axios.post("http://localhost:3000/employees", submission);
-    return redirect("/products");
+    axios.post("http://localhost:3000/providers", submission).then((res)=>{
+        if(res.status == 200){
+            alert("Ingreso Exitoso")
+        }
+    }).catch((err)=>{
+        alert("Ingreso invalido, codigo de error: "+err)
+    });
+    return redirect("/Proveedores");
   }

@@ -61,21 +61,79 @@ function SELECTPROVIDER() {
     app.get("/providers", (req, res) => {
       res.json(arr); // mostramos el array de objetos para visualizarlo
     });
+    //provider, webpage, address, telephone,email
     app.post("/providers", (req, res) => {
-      let prop = req.body;
-      let username = prop.username;
-      let password = prop.password;
-      arr.forEach((val, i) => {
-        console.log(arr);
-        console.log(arr[i].username);
-        console.log(arr[i].password);
-        if (username == arr[i].username && password == arr[i].password) {
-          console.log("resultado valido");
-          return res.sendStatus(200);
-        }
-      });
-      res.sendStatus(505);
+      const prop = req.body;
+      console.log(prop);
+      let provider = prop.provider.toString();
+      let webpage = prop.webpage.toString();
+      let address = prop.address.toString();
+      let telephone = prop.telephone;
+      let email = prop.email.toString();
+      if (
+        provider == "" ||
+        webpage == "" ||
+        address == "" ||
+        telephone == "" ||
+        email == ""
+      ) {
+        console.log("error");
+        res.sendStatus(405)
+      } else if (
+        provider.length < 50 &&
+        provider.match(validUserRegex) &&
+        webpage.length < 100 &&
+        address.length < 100 &&
+        address.match(validUserRegex) &&
+        telephone.match(validNum) &&
+        email.length < 150 &&
+        email.match(validRegex)
+      ) {
+        INSERTPROVIDERS(
+          prop.provider,
+          prop.webpage,
+          prop.address,
+          prop.telephone,
+          prop.email
+        );
+        console.log("ingreso Realizado")
+        res.sendStatus(200)
+      }
+      else{
+        res.sendStatus(405)
+        console.log("Error")
+      }
     });
+    app.delete("/providers", (req, res) => {
+      const prop = req.body;
+      console.log(prop)
+      let provider = prop.provider;
+      if(provider != undefined){
+        DELETEPROVIDERS(provider)
+        console.log("Se ha realizado un Delete sobre: "+ provider)
+        res.sendStatus(200)
+      }
+      else{
+        res.sendStatus(405)
+      }
+    });
+    app.put("/providers", (req,res)=>{
+      const prop = req.body.data;
+      console.log(prop)
+      let provider = prop.provider;
+      let webpage = prop.webpage;
+      let address = prop.address;
+      let telephone = prop.telephone;
+      let email = prop.email;
+      if(provider != "" && provider.match(validUserRegex)){
+        PUTPROVIDERS(provider, webpage, address, telephone, email)
+        console.log("Se ha realizado un PUT sobre: "+ provider)
+        res.sendStatus(200)
+      }
+      else{
+        res.sendStatus(405)
+      }
+    })
   });
 }
 SELECTPROVIDER();
@@ -86,7 +144,26 @@ function INSERTPROVIDERS(provider, webpage, address, telephone, email) {
     else console.log("ingreso database2 exitoso");
   });
 }
+function DELETEPROVIDERS(provider){
+  sql = `DELETE FROM providers WHERE provider=?`;
+  db.run(sql, [provider], (err) => {
+    if (err) return console.error(err.message);
+    else console.log("Eliminacion Exitosa");
+  });
+}
+function PUTPROVIDERS(provider, webpage, address, telephone, email) {
+  sql =
+    "UPDATE providers SET webpage = ? , address = ? , telephone = ? , email=? WHERE provider = ? ";
+  db.run(sql, [webpage, address, telephone, email, provider], (err) => {
+    if (err) return console.error(err.message);
+    else console.log("actualizacion exitosa");
+  });
+}
 //INSERTPROVIDERS("Adidas","adidas.com","Rosario 250","1153578275","adidas-noreply@adidas.com")
+
+
+
+
 //////////////////////////////////////////////////////////
 //                DATABASE Employees                    //
 //////////////////////////////////////////////////////////
@@ -103,29 +180,31 @@ function SELECTEMPLOYEE() {
     });
     app.post("/employees", (req, res) => {
       const prop = req.body;
-      console.log(prop)
+      console.log(prop);
       let username = prop.username.toString();
       let fullname = prop.fullname.toString();
       let address = prop.address.toString();
-      let dni = prop.dni
+      let dni = prop.dni;
       let worksector = prop.worksector.toString();
       if (
         username == "" ||
         fullname == "" ||
         address == "" ||
-        dni == "" || worksector == ""){
-          console.log("error")
-        }
-      else if( 
-          username.length < 50 &&
-          username.match(validUserRegex) &&
-          fullname.length < 100 &&
-          fullname.match(validUserRegex) &&
-          address.length < 100 &&
-          address.match(validUserRegex) &&
-          dni.match(validNum) &&
-          worksector.length < 13 &&
-          worksector.match(validUserRegex)) {
+        dni == "" ||
+        worksector == ""
+      ) {
+        console.log("error");
+      } else if (
+        username.length < 50 &&
+        username.match(validUserRegex) &&
+        fullname.length < 100 &&
+        fullname.match(validUserRegex) &&
+        address.length < 100 &&
+        address.match(validUserRegex) &&
+        dni.match(validNum) &&
+        worksector.length < 13 &&
+        worksector.match(validUserRegex)
+      ) {
         INSERTEMPLOYEE(
           prop.username,
           prop.fullname,
@@ -135,6 +214,35 @@ function SELECTEMPLOYEE() {
         );
       }
     });
+    app.delete("/employees", (req, res) => {
+      const prop = req.body;
+      let username = prop.username;
+      if(username != undefined){
+        DELETEEMPLOYEE(username)
+        console.log("Se ha realizado un Delete sobre: "+ username)
+        res.sendStatus(200)
+      }
+      else{
+        res.sendStatus(405)
+      }
+    });
+    app.put("/employees", (req,res)=>{
+      const prop = req.body.data;
+      console.log(prop)
+      let username = prop.username;
+      let fullname = prop.fullname;
+      let address = prop.address;
+      let dni = prop.dni;
+      let worksector = prop.worksector;
+      if(username != "" && username.match(validUserRegex)){
+        PUTEMLOYEE(username, fullname, address, dni, worksector)
+        console.log("Se ha realizado un PUT sobre: "+ username)
+        res.sendStatus(200)
+      }
+      else{
+        res.sendStatus(405)
+      }
+    })
   });
 }
 SELECTEMPLOYEE();
@@ -146,7 +254,21 @@ function INSERTEMPLOYEE(username, fullname, address, dni, worksector) {
     else console.log("ingreso database2 exitoso");
   });
 }
-
+function DELETEEMPLOYEE(username){
+  sql = `DELETE FROM employees WHERE username=?`;
+  db.run(sql, [username], (err) => {
+    if (err) return console.error(err.message);
+    else console.log("Eliminacion Exitosa");
+  });
+}
+function PUTEMLOYEE(username, fullname, address, dni, worksector) {
+  sql =
+    "UPDATE employees SET fullname = ? , address = ? , dni = ? , worksector=? WHERE username = ? ";
+  db.run(sql, [fullname, address, dni, worksector, username,], (err) => {
+    if (err) return console.error(err.message);
+    else console.log("actualizacion exitosa");
+  });
+}
 //INSERTEMPLOYEE("peña","peña verdun","rosario 200", "94482945","BD")
 
 //////////////////////////////////////////////////////////

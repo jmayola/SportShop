@@ -7,6 +7,11 @@ function Proveedores() {
   const [Provider, setProvider] = useState([]);
   const [Search, SetSearch] = useState([]);
   const [ModObj, setModObj] = useState([{}]);
+  const [Address, setAddress] = useState("")
+  const [Webpage, setWebpage] = useState("")
+  const [Telephone, setTelephone] = useState("")
+  const [Provid, setProvid] = useState("")
+  const [Email, setEmail] = useState("")
   useEffect(() => {
     axios.get("http://localhost:3000/providers").then((res) => {
       let data = res.data;
@@ -42,12 +47,13 @@ function Proveedores() {
                 document.getElementById("selectProd").style.display = "block";
               }}
               className="block w-1/2 rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-              placeholder="Buscar Usuario"
+              placeholder="Buscar Proveedor"
             />
             <select
               className="hidden rounded-lg min-w-[300px] text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               name=""
-              onClick={(e) => setValue(e.target.value)}
+              onClick={(e) => {setValue(e.target.value)
+                setProvid(e.target.value)}}
               id="selectProd"
             >
               {Search.map((val, i) => {
@@ -68,9 +74,9 @@ function Proveedores() {
                 <div className="w-full">
                   <h2 className="flex justify-start px-2 ">Página web</h2>
                   <input
-                    name="usuario"
+                    name="webpage"
                     type="text"
-                    readOnly
+                    onChange={(e)=>setWebpage(e.target.value)}
                     defaultValue={ModObj[0].webpage}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
@@ -80,7 +86,7 @@ function Proveedores() {
                   <input
                     name="usuario"
                     type="text"
-                    readOnly
+                    onChange={(e)=>setAddress(e.target.value)}
                     defaultValue={ModObj[0].address}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
@@ -89,8 +95,8 @@ function Proveedores() {
                   <h2 className="flex justify-start px-2">Teléfono</h2>
                   <input
                     name="usuario"
-                    readOnly
                     type="text"
+                    onChange={(e)=>setTelephone(e.target.value)}
                     defaultValue={ModObj[0].telephone}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
@@ -100,7 +106,7 @@ function Proveedores() {
                   <input
                     name="usuario"
                     type="text"
-                    readOnly
+                    onChange={(e)=>setEmail(e.target.value)}
                     defaultValue={ModObj[0].email}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
@@ -113,18 +119,51 @@ function Proveedores() {
       <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
           <div className="flex justify-center gap-5">
-            <Link className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            <Link to={"/Proveedores/insert"} className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Insertar
             </Link>
-            <Link
-              onClick={() => confirm("Desea eliminar el proveedor?")}
+            <button
+              onClick={() => {if(confirm("Desea eliminar el Proveedor?")){
+                axios.delete("http://localhost:3000/providers",{
+                  data: { provider: Provid },
+                }).then((res)=>{
+                  if(res.status == 200){
+                    alert("Eliminacion de Proveedor Exitosa")
+                    location.reload()
+                  }
+                  else{
+                    alert("se ha detectado un error en la base de datos, vuelve a intentarlo")
+                    location.reload()
+                  }
+                }).catch((res)=>{
+                  alert("Error, prueba a ingresar un Proveedor.")
+                  alert("Se a detectado un error: "+ res.message)
+                })}
+              }}
               className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Borrar Proveedor
-            </Link>
-            <Link className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            </button>
+            <button onClick={() => {if(confirm("Desea modificar el Proveedor?")){
+                axios.put("http://localhost:3000/providers",{
+                  data: { provider: Provid, webpage: Webpage, address: Address, telephone: Telephone, email: Email },
+                }).then((res)=>{
+                  if(res.status == 200){
+                    alert("Modificacion de Proveedor Exitosa")
+                    location.reload()
+                  }
+                  else{
+                    alert("se ha detectado un error en la base de datos, vuelve a intentarlo")
+                    location.reload()
+                  }
+                }).catch((res)=>{
+                  alert("Error, prueba a ingresar un Proveedor.")
+                  alert("Se a detectado un error: "+ res.message)
+                })
+              }
+              }} className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Modificar
-            </Link>
+            </button>
           </div>
         </div>
       </section>
