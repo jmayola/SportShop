@@ -4,10 +4,10 @@ import React, { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import axios from "axios";
 import Product from "./Product";
+import { Link } from "react-router-dom";
 function Cart() {
   const [Data, setData] = useState([]);
   const [Products, setProducts] = useState([]);
-  const [Price, setPrice] = useState(0);
   const Datos = useLoaderData();
   useEffect(() => {
     async function getProducts() {
@@ -83,13 +83,7 @@ function Cart() {
                       );
                     })}
                   </div>
-                  <h1>
-                    Precio:
-                    {Data.map((val, i) => {
-                      let sum
-                      sum = val.price_products * Data[i].cant
-                    })}
-                  </h1>
+                    <Link>Finalizar</Link>
                 </div>
               </div>
             </div>
