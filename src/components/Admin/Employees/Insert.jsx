@@ -15,7 +15,7 @@ export default function InsertProduct() {
           <Form
             method="POST"
             className="grid grid-cols-3 gap-5"
-            action="/products/insert"
+            action="/Empleados/insert"
           >
             <input
               type="text"
@@ -71,7 +71,6 @@ export const actionEmployeesInsert = async ({ request }) => {
       fullname: data.get("fullname"),
       worksector: data.get("worksector")
     };
-    console.log(submission)
     axios.post("http://localhost:3000/employees", submission);
     return redirect("/products");
   }

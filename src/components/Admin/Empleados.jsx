@@ -1,28 +1,26 @@
 import Header from "../Header";
 import Footer from "../Footer";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 function Empleados() {
   const [User, setUser] = useState([]);
   const [Search, SetSearch] = useState([]);
-  const [ModObj, setModObj] = useState([
-    {
-      id_products: 1,
-      name_products: "peña",
-      desc_products: "wapo",
-      price_products: 999,
-      stock_products: 10,
-      category_products: "facha",
-      image_products: "botin1.png",
-    },
-  ]);
+  const [ModObj, setModObj] = useState([{}]);
+  const [DNI, setDNI] = useState("")
+  const [Address, setAddress] = useState("")
+  const [Fullname, setFullname] = useState("")
+  const [Username, setUsername] = useState("")
+  const [Work, setWork] = useState("")
+  const {data} = useLoaderData()
   useEffect(() => {
-    axios.get("http://localhost:3000/employees").then((res) => {
-      let data = res.data;
+    async function getData() {
       return setUser(data);
-    });
-  }, [User]);
+    }
+    if(User == ""){
+      getData()
+    }
+  }, [User, data]); 
 
   function FindProdcuts(e) {
     let arr = [];
@@ -38,6 +36,7 @@ function Empleados() {
       if (e == val.username) return true;
     });
     setModObj(arr);
+    ModObj[0].username
   }
   return (
     <>
@@ -51,6 +50,7 @@ function Empleados() {
               onChange={(e) => {
                 FindProdcuts(e.target.value);
                 document.getElementById("selectProd").style.display = "block";
+                setUsername(e.target.value)
               }}
               className="block w-1/2 rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
               placeholder="Buscar empleado"
@@ -76,18 +76,7 @@ function Empleados() {
               <img src="./public/logo-empresa.png" alt="" className="w-auto" />
             </div>
             <div method="post" action="" className="w-full py-10">
-              <div className="flex place-content-center place-items-center flex-col ">
-              <div className="w-full">
-                  <h2 className="flex justify-start px-2 ">
-                    Usuario
-                  </h2>
-                  <input
-                    name="username"
-                    type="text"
-                    defaultValue={ModObj[0].username}
-                    className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                  />
-                </div>
+              <div className="flex place-content-center place-items-center flex-col "> 
                 <div className="w-full">
                   <h2 className="flex justify-start px-2 ">
                     Nombre y Apellido
@@ -96,6 +85,7 @@ function Empleados() {
                     name="fullname"
                     type="text"
                     defaultValue={ModObj[0].fullname}
+                    onChange={(e)=>setFullname(e.target.value)}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
                 </div>
@@ -105,6 +95,7 @@ function Empleados() {
                     name="address"
                     type="text"
                     defaultValue={ModObj[0].address}
+                    onChange={(e)=>setAddress(e.target.value)}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
                 </div>
@@ -113,6 +104,7 @@ function Empleados() {
                   <input
                     name="dni"
                     type="text"
+                    onChange={(e)=>setDNI(e.target.value)}
                     defaultValue={ModObj[0].dni}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
@@ -122,6 +114,7 @@ function Empleados() {
                   <input
                     name="worksector"
                     type="text"
+                    onChange={(e)=>setWork(e.target.value)}
                     defaultValue={ModObj[0].worksector}
                     className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                   />
@@ -134,18 +127,54 @@ function Empleados() {
       <section className="flex justify-center max-[800px]: m-5">
         <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
           <div className="flex justify-center gap-5">
-            <Link to={"/Empleados/insert"} className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
-              Insertar
-            </Link>
             <Link
-              onClick={() => confirm("Desea eliminar el empleado?")}
+              to={"/Empleados/insert"}
               className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
-              Borrar Proveedor
+              Insertar
             </Link>
-            <Link className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            <button
+              onClick={() => {if(confirm("Desea eliminar el empleado?")){
+                axios.delete("http://localhost:3000/employees",{
+                  data: { username: ModObj[0].username },
+                }).then((res)=>{
+                  if(res.status == 200){
+                    alert("Eliminacion de Empleado Exitosa")
+                    location.reload()
+                  }
+                  else{
+                    alert("se ha detectado un error en la base de datos, vuelve a intentarlo")
+                    location.reload()
+                  }
+                }).catch((res)=>{
+                  alert("Error, prueba a ingresar un empleado.")
+                  alert("Se a detectado un error: "+ res.message)
+                })}
+              }}
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+            >
+              Borrar Empleado
+            </button>
+            <button onClick={() => {if(confirm("Desea modificar el empleado?")){
+                axios.put("http://localhost:3000/employees",{
+                  data: { username: Username, fullname: Fullname, dni: DNI, address: Address, worksector: Work },
+                }).then((res)=>{
+                  if(res.status == 200){
+                    alert("Modificacion de Empleado Exitosa")
+                    location.reload()
+                  }
+                  else{
+                    alert("se ha detectado un error en la base de datos, vuelve a intentarlo")
+                    location.reload()
+                  }
+                }).catch((res)=>{
+                  alert("Error, prueba a ingresar un empleado.")
+                  alert("Se a detectado un error: "+ res.message)
+                })
+              }
+              }} className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Modificar
-            </Link>
+            </button>
           </div>
         </div>
       </section>
