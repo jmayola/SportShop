@@ -40,11 +40,6 @@ function HeaderCliente(data) {
           </a>
           <Link to={`/Cart`} className="px-3 ">
             <img src="bx-cart.svg" alt="" />
-            <img
-              src="bx-cart-animation.svg"
-              alt=""
-              className="opacity-0 hover:opacity-10"
-            />
           </Link>
 
           <button className="text-white rounded-lg mx-2 text-sm py-2 no-underline font-medium  bg-black hover:bg-neutral-900 active:bg-neutral-900 ">
