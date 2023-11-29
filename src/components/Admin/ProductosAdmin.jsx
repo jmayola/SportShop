@@ -26,7 +26,7 @@ function ProductosAdmin() {
     });
   }
   function setValue(e) {
-    let arr = Products.filter((val, i) => {
+    let arr = Products.filter((val, ) => {
       if (e == val.name_products) return true;
     });
     setModObj(arr);
@@ -148,7 +148,7 @@ function ProductosAdmin() {
             <Link
               to={
                 "/products/update/" +
-                Products.findIndex((val, index) => {
+                Products.findIndex((val, ) => {
                   if (val.id_products == ModObj[0].id_products) {
                     return true;
                   } else {

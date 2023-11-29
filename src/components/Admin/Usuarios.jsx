@@ -24,7 +24,7 @@ function Usuarios() {
     });
   }
   function setValue(e) {
-    let arr = User.filter((val, i) => {
+    let arr = User.filter((val) => {
       if (e == val.username) return true;
     });
     setModObj(arr);
