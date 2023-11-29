@@ -25,6 +25,11 @@ function HeaderNoRegister() {
             Nosotros
           </li>
         </a>
+        <a href={`/ContactUs`}>
+          <li className="link-animation link-typography font-inter">
+            Contacto
+          </li>
+        </a>
         <Link to={`/Ingresar`}>
           <li className="link-animation link-typography font-inter">
             Ingresar

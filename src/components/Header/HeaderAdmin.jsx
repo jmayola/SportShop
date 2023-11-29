@@ -28,6 +28,11 @@ function HeaderAdmin(data) {
               Nosotros
             </li>
           </a>
+          <a href={`/ContactUs`}>
+            <li className="link-animation link-typography font-inter">
+              Contacto
+            </li>
+          </a>
           <Link to={`/Cart`} className="px-3 ">
             <img src="bx-cart.svg" alt="" />
             <img

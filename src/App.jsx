@@ -2,6 +2,7 @@ import "./index.css";
 import Home from "./routes/Home";
 import Inserts from "./routes/Inserts";
 import Products from "./routes/Products";
+import ContactUs from "./components/ContactUs";
 import Update from "./routes/Update";
 import Facturas from "./routes/Facturas";
 import ErrorPage from "./routes/error-page";
@@ -13,8 +14,12 @@ import Proveedores from "./components/Admin/Proveedores";
 import ProductosAdmin from "./components/Admin/ProductosAdmin";
 import User from "./routes/User";
 import Cart from "./routes/Cart";
-import EmployeeInsert, {actionEmployeesInsert} from "./components/Admin/Employees/Insert"
-import InsertProveedor, {actionProvidersInsert} from "./components/Admin/Proveedores/InsertProovedor"; 
+import EmployeeInsert, {
+  actionEmployeesInsert,
+} from "./components/Admin/Employees/Insert";
+import InsertProveedor, {
+  actionProvidersInsert,
+} from "./components/Admin/Proveedores/InsertProovedor";
 import {
   createBrowserRouter,
   redirect,
@@ -109,6 +114,11 @@ function App() {
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
+      path: "/ContactUs",
+      element: <ContactUs></ContactUs>,
+      errorElement: <ErrorPage></ErrorPage>,
+    },
+    {
       path: "/Ingresar",
       element: <Ingresar></Ingresar>,
       action: loginUserAction,
@@ -123,10 +133,10 @@ function App() {
     {
       path: "/Empleados",
       element: <Empleados></Empleados>,
-      loader: (()=>{
-         let data =  axios.get("http://localhost:3000/employees")
-         return data
-      }),
+      loader: () => {
+        let data = axios.get("http://localhost:3000/employees");
+        return data;
+      },
       errorElement: <ErrorPage></ErrorPage>,
     },
     {

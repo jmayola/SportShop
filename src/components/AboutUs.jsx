@@ -8,7 +8,7 @@ function AboutUs() {
       </div>
 
       <section className="md:grid md:grid-cols-2 flex flex-col">
-        <img src="public/company.jpg" alt="" className="w-auto rounded-lg" />
+        <img src="public/about1.jpg" alt="" className="w-full rounded-lg" />
         <p className=" text-justify bg-gray-50 p-5 rounded-md w-auto mx-5 my-3">
           Desde su fundación en 2010, nuestra empresa ha experimentado un
           crecimiento significativo y una evolución en la gama de productos que
