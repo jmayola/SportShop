@@ -182,6 +182,9 @@ function App() {
     {
       path: "/Cart",
       element: <Cart></Cart>,
+      loader: async ()=>{
+        return await axios.get("http://localhost:3000/cart")
+      },
       errorElement: <ErrorPage></ErrorPage>,
     },
     {
