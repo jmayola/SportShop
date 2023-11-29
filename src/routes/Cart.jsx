@@ -6,24 +6,26 @@ import axios from "axios";
 import Product from "./Product";
 function Cart() {
   const [Data, setData] = useState([]);
-  const [Products, setProducts] = useState([])
-  const data = useLoaderData();
+  const [Products, setProducts] = useState([]);
+  const [Price, setPrice] = useState(0);
+  const Datos = useLoaderData();
   useEffect(() => {
-    async function getProducts(){
-      const {data} = await axios.get("http://localhost:3000/cart")
-      setProducts(data)
+    async function getProducts() {
+      const { data } = await axios.get("http://localhost:3000/");
+      setProducts(data);
+      console.log(data);
     }
-    if(Products == ""){
-      getProducts()
+    if (Products == "") {
+      getProducts();
     }
-    function getData() {}
+    function getData() {
+      setData(Datos.data);
+    }
     if (Data == "") {
       getData();
     }
-  }, [Data, data, Products]);
-  console.log(Data)
-  console.log(Products)
-  if (Data == "") {
+  }, [Data, Datos, Products]);
+  if (Data == "" || Products == "") {
     return (
       <>
         <Header></Header>
@@ -57,31 +59,37 @@ function Cart() {
                     <h1>Carrito</h1>
                     <img src="bx-cart.svg" alt="" />
                   </div>
-                  <div className="flex justify-between gap-36 px-10 py-2 font-semibold  ">
-                    <h1>Imagen</h1>
-                    <h1>Producto</h1>
-                    <h1>Cant.</h1>
-                    <h1>Marca</h1>
-                  </div>
-                  <div className="flex justify-between gap-36 px-10 py-2 items-center">
+                  <div className="grid grid-cols-5 justify-between text-center gap-10 px-10 py-2 items-center">
+                    <h1 className="flex place-content-center">Imagen</h1>
+                    <h1 className="flex place-content-center">Producto</h1>
+                    <h1 className="flex place-content-center">Precio</h1>
+                    <h1 className="flex place-content-center">Cant.</h1>
+                    <h1 className="flex place-content-center">Marca</h1>
                     {Data.map((val, i) => {
                       return (
                         <>
                           <img
                             src={Products[Data[i].id_products].image_products}
                             alt=""
-                            className="w-1/12 bg-gray-500"
+                            className="w-40 bg-gray-500"
                           />
-                          <div className="flex flex-col">
-                            <h1>Producto</h1>
-                            <h2>$$$$$$</h2>
-                          </div>
-                          <h1>1</h1>
-                          <h1>Nombre</h1>
+                          <h1>{Products[Data[i].id_products].name_products}</h1>
+                          <h2>
+                            {Products[Data[i].id_products].price_products}
+                          </h2>
+                          <h1>{Data[i].cant}</h1>
+                          <h1>{Products[Data[i].id_products].mark_products}</h1>
                         </>
                       );
                     })}
                   </div>
+                  <h1>
+                    Precio:
+                    {Data.map((val, i) => {
+                      let sum
+                      sum = val.price_products * Data[i].cant
+                    })}
+                  </h1>
                 </div>
               </div>
             </div>
