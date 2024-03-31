@@ -7,11 +7,11 @@ function Proveedores() {
   const [Provider, setProvider] = useState([]);
   const [Search, SetSearch] = useState([]);
   const [ModObj, setModObj] = useState([{}]);
-  const [Address, setAddress] = useState("")
-  const [Webpage, setWebpage] = useState("")
-  const [Telephone, setTelephone] = useState("")
-  const [Provid, setProvid] = useState("")
-  const [Email, setEmail] = useState("")
+  const [Address, setAddress] = useState("");
+  const [Webpage, setWebpage] = useState("");
+  const [Telephone, setTelephone] = useState("");
+  const [Provid, setProvid] = useState("");
+  const [Email, setEmail] = useState("");
   useEffect(() => {
     axios.get("http://localhost:3000/providers").then((res) => {
       let data = res.data;
@@ -28,7 +28,7 @@ function Proveedores() {
     });
   }
   function setValue(e) {
-    let arr = Provider.filter((val, i) => {
+    let arr = Provider.filter((val) => {
       if (e == val.provider) return true;
     });
     setModObj(arr);
@@ -36,9 +36,9 @@ function Proveedores() {
   return (
     <>
       <Header></Header>
-      <section className="flex justify-center max-[800px]: m-5">
-        <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
-          <div className="flex justify-center gap-5">
+      <section className="flex justify-center my-5">
+        <div className="flex flex-col w-2/3 border border-gray-300 shadow-md p-8">
+          <div className="flex justify-center gap-x-5">
             <input
               type="search"
               autoFocus
@@ -46,14 +46,16 @@ function Proveedores() {
                 FindProdcuts(e.target.value);
                 document.getElementById("selectProd").style.display = "block";
               }}
-              className="block w-1/2 rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+              className="block w-1/2 rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-black "
               placeholder="Buscar Proveedor"
             />
             <select
-              className="hidden rounded-lg min-w-[300px] text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+              className="hidden rounded-lg text-center border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-black "
               name=""
-              onClick={(e) => {setValue(e.target.value)
-                setProvid(e.target.value)}}
+              onClick={(e) => {
+                setValue(e.target.value);
+                setProvid(e.target.value);
+              }}
               id="selectProd"
             >
               {Search.map((val, i) => {
@@ -66,7 +68,7 @@ function Proveedores() {
             </select>
           </div>
           <div className="flex justify-between w-full  px-10">
-            <div className="   w-full  ">
+            <div className="w-full  ">
               <img src="./public/logo-empresa.png" alt="" className="w-auto" />
             </div>
             <div method="post" action="" className="w-full py-10">
@@ -76,9 +78,9 @@ function Proveedores() {
                   <input
                     name="webpage"
                     type="text"
-                    onChange={(e)=>setWebpage(e.target.value)}
+                    onChange={(e) => setWebpage(e.target.value)}
                     defaultValue={ModObj[0].webpage}
-                    className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-black "
                   />
                 </div>
                 <div className="w-full">
@@ -86,9 +88,9 @@ function Proveedores() {
                   <input
                     name="usuario"
                     type="text"
-                    onChange={(e)=>setAddress(e.target.value)}
+                    onChange={(e) => setAddress(e.target.value)}
                     defaultValue={ModObj[0].address}
-                    className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-black "
                   />
                 </div>
                 <div className="w-full">
@@ -96,9 +98,9 @@ function Proveedores() {
                   <input
                     name="usuario"
                     type="text"
-                    onChange={(e)=>setTelephone(e.target.value)}
+                    onChange={(e) => setTelephone(e.target.value)}
                     defaultValue={ModObj[0].telephone}
-                    className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-black "
                   />
                 </div>
                 <div className="w-full">
@@ -106,9 +108,9 @@ function Proveedores() {
                   <input
                     name="usuario"
                     type="text"
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     defaultValue={ModObj[0].email}
-                    className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-black "
                   />
                 </div>
               </div>
@@ -116,52 +118,75 @@ function Proveedores() {
           </div>
         </div>
       </section>
-      <section className="flex justify-center max-[800px]: m-5">
-        <div className="flex flex-col w-2/3 border border-gray-300 shadow-lg  p-10">
-          <div className="flex justify-center gap-5">
-            <Link to={"/Proveedores/insert"} className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+      <section className="flex justify-center mb-5">
+        <div className="flex flex-col w-2/3 border border-gray-300 shadow-md p-8">
+          <div className="flex justify-center gap-x-4">
+            <Link
+              to={"/Proveedores/insert"}
+              className="p-5 bg-black border hover:shadow-2xl duration-500 rounded-md font-medium text-white"
+            >
               Insertar
             </Link>
             <button
-              onClick={() => {if(confirm("Desea eliminar el Proveedor?")){
-                axios.delete("http://localhost:3000/providers",{
-                  data: { provider: Provid },
-                }).then((res)=>{
-                  if(res.status == 200){
-                    alert("Eliminacion de Proveedor Exitosa")
-                    location.reload()
-                  }
-                  else{
-                    alert("se ha detectado un error en la base de datos, vuelve a intentarlo")
-                    location.reload()
-                  }
-                }).catch((res)=>{
-                  alert("Error, prueba a ingresar un Proveedor.")
-                  alert("Se a detectado un error: "+ res.message)
-                })}
+              onClick={() => {
+                if (confirm("Desea eliminar el Proveedor?")) {
+                  axios
+                    .delete("http://localhost:3000/providers", {
+                      data: { provider: Provid },
+                    })
+                    .then((res) => {
+                      if (res.status == 200) {
+                        alert("Eliminacion de Proveedor Exitosa");
+                        location.reload();
+                      } else {
+                        alert(
+                          "se ha detectado un error en la base de datos, vuelve a intentarlo"
+                        );
+                        location.reload();
+                      }
+                    })
+                    .catch((res) => {
+                      alert("Error, prueba a ingresar un Proveedor.");
+                      alert("Se a detectado un error: " + res.message);
+                    });
+                }
               }}
               className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
               Borrar Proveedor
             </button>
-            <button onClick={() => {if(confirm("Desea modificar el Proveedor?")){
-                axios.put("http://localhost:3000/providers",{
-                  data: { provider: Provid, webpage: Webpage, address: Address, telephone: Telephone, email: Email },
-                }).then((res)=>{
-                  if(res.status == 200){
-                    alert("Modificacion de Proveedor Exitosa")
-                    location.reload()
-                  }
-                  else{
-                    alert("se ha detectado un error en la base de datos, vuelve a intentarlo")
-                    location.reload()
-                  }
-                }).catch((res)=>{
-                  alert("Error, prueba a ingresar un Proveedor.")
-                  alert("Se a detectado un error: "+ res.message)
-                })
-              }
-              }} className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
+            <button
+              onClick={() => {
+                if (confirm("Desea modificar el Proveedor?")) {
+                  axios
+                    .put("http://localhost:3000/providers", {
+                      data: {
+                        provider: Provid,
+                        webpage: Webpage,
+                        address: Address,
+                        telephone: Telephone,
+                        email: Email,
+                      },
+                    })
+                    .then((res) => {
+                      if (res.status == 200) {
+                        alert("Modificacion de Proveedor Exitosa");
+                        location.reload();
+                      } else {
+                        alert(
+                          "se ha detectado un error en la base de datos, vuelve a intentarlo"
+                        );
+                        location.reload();
+                      }
+                    })
+                    .catch((res) => {
+                      alert("Error, prueba a ingresar un Proveedor.");
+                      alert("Se a detectado un error: " + res.message);
+                    });
+                }
+              }}
+              className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
+            >
               Modificar
             </button>
           </div>
