@@ -112,7 +112,7 @@ function Usuarios() {
               onClick={() => confirm("Desea eliminar el Usuario?")}
               className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white"
             >
-              Borrar Proveedor
+              Borrar Usuario
             </Link>
             <Link className="p-5 bg-black border hover:shadow-2xl duration-500  rounded-md font-medium text-white">
               Modificar
