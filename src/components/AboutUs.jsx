@@ -1,12 +1,13 @@
 function AboutUs() {
   return (
-    <section id="aboutus" className="flex flex-col w-full px-10 gap-y-10">
-      <div className="flex justify-center my-10 font-inter">
-        <h2 className="font-semibold text-4xl py-2">Sobre nosotros</h2>
-      </div>
-      <div className="flex flex-row">
-        <img src="public/about1.jpg" alt="" className="w-1/2 rounded-lg" />
-        <p className=" text-justify bg-gray-50 p-5 ml-5 rounded-md w-auto ">
+    <section id="aboutus" className="flex flex-col gap-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:flex-row sm:gap-x-5">
+        <img
+          src="public/about1.jpg"
+          alt=""
+          className="hidden md:flex sm:rounded-md "
+        />
+        <p className="bg-gray-50 p-5 rounded-md">
           Desde su fundación en 2010, nuestra empresa ha experimentado un
           crecimiento significativo y una evolución en la gama de productos que
           ofrecemos. Iniciamos nuestras operaciones con la venta de remeras,
@@ -17,8 +18,8 @@ function AboutUs() {
           demandas de nuestros clientes.
         </p>
       </div>
-      <div className="flex flex-row">
-        <p className="text-justify bg-gray-50 p-5 mr-5 rounded-md w-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:flex-row sm:gap-x-5 ">
+        <p className="bg-gray-50 p-5 rounded-md">
           A lo largo de estos años, hemos pasado de contar con tres empleados
           iniciales a formar un sólido equipo de 30 personas que colaboran de
           manera coordinada para el éxito de la empresa. Esta fuerza laboral
@@ -26,9 +27,13 @@ function AboutUs() {
           capacidad para ofrecer productos de calidad y servicios excepcionales
           a nuestros clientes.
         </p>
-        <img src="public/about2.png" alt="" className="w-1/2 rounded-lg" />
+        <img
+          src="public/about2.png"
+          alt=""
+          className="hidden md:flex sm:rounded-md lg:w-full"
+        />
       </div>
-      <div className="mb-10">
+      <div className="flex flex-col">
         <p className=" bg-gray-50 p-5 rounded-md">
           Aunque no contamos con un local físico para la venta directa, nuestra
           oficina central de coordinación ubicada en Av. Corrientes 1115, C1010
