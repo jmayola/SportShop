@@ -47,12 +47,12 @@ function Product() {
     return (
       <>
         <Header></Header>
-        <section className="flex justify-center my-8">
-          <div className="flex w-3/4 border border-gray-300">
+        <section className="flex justify-center m-6 lg:mx-10">
+          <div className="flex flex-col  border border-gray-300 sm:flex-row">
             <div className="flex justify-center font-black m-auto">
               <img
                 src={"../" + Data[id].image_products}
-                className="w-1/2 h-1/2  border-gray-300 object-contain"
+                className="w-2/3 border-gray-300 object-contain"
                 alt=""
               />
             </div>
